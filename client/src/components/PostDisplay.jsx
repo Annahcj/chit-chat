@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 
-const PostDisplay = ({ title, likes, dislikes }) => {
+const PostDisplay = ({ postId, title, likes, dislikes }) => {
   return (
     <div className="post-display">
-      <Link to="/post">
+      <Link to={'/posts/' + postId}> 
         {title}
         <span>Likes: {likes}</span>
         <span>Dislikes: {dislikes}</span>
