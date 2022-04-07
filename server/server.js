@@ -1,15 +1,18 @@
-const express = require('express');
-const app = express();
+const express = require('express')
 const cors = require('cors');
 
-const commentRoutes = require('./routes/comments');
-const postRoutes = require('./routes/posts');
+const postRoutes = require('./routes/posts')
+const commentRoutes = require('./routes/comments')
 
-app.use(express.json({ extended: true }))
-app.use(express.urlencoded({ extended: true }))
-app.use(cors());
+const server = express()
 
-app.use('/comments', commentRoutes);
-app.use('/posts', postRoutes);
+// Middleware
+server.use(express.json({ extended: true }))
+server.use(express.urlencoded({ extended: true }))
+server.use(cors());
 
-module.exports = app;
+// Routes
+server.use('/posts', postRoutes)
+server.use('/comments', commentRoutes)
+
+module.exports = server

@@ -16,6 +16,9 @@ function App() {
   const [postAuthor, setPostAuthor] = useState('');
   const [postTitle, setPostTitle] = useState('');
   const [postContent, setPostContent] = useState('');
+
+  const [comments, setComments] = useState({});
+
   const submitComment = (e, postId, author, comment) => {
     e.preventDefault();
     // call server-side endpoint to add comment to post
@@ -32,9 +35,26 @@ function App() {
       body: JSON.stringify(payload)
     })
       .then(res => {
-        console.log(res)
+        return res.json();
+      })
+      .then(data => {
+        setComments(processComments(data.posts, data.comments));
+        console.log(data)
       })
       .catch(err => console.log(err))
+  }
+
+  // process comments -> { post_id: [comment, comment], post_id: [comment, ...] }
+  const processComments = (posts, comments) => {
+    let res = {};
+    for (let post of posts) {
+      res[post.id] = [];
+    }
+    for (let comment of comments) {
+      let post_id = comment.post_id;
+      res[post_id].push(comment);
+    }
+    return res;
   }
 
   const submitPost = (e, postAuthor, postTitle, postContent) => {
@@ -53,7 +73,10 @@ function App() {
       body: JSON.stringify(payload)
     })
       .then(res => {
-        console.log(res)
+        return res.json();
+      })
+      .then(data => {
+        console.log(data)
       })
       .catch(err => console.log(err))
   }
@@ -66,7 +89,7 @@ function App() {
         <Route index element={<Posts posts={posts} />} />
         <Route path="/posts" element={<Posts posts={posts} />} />
         <Route path="/posts/new" element={<PostForm postAuthor={postAuthor} setPostAuthor={setPostAuthor} postTitle={postTitle} setPostTitle={setPostTitle} postContent={postContent} setPostContent={setPostContent} submitPost={submitPost}/>} />
-        <Route path="/posts/:id" element={<Post formAuthor={formAuthor} setFormAuthor={setFormAuthor} formComment={formComment} setFormComment={setFormComment} submitComment={submitComment}/>}/>
+        <Route path="/posts/:id" element={<Post formAuthor={formAuthor} setFormAuthor={setFormAuthor} formComment={formComment} setFormComment={setFormComment} submitComment={submitComment} comments={comments}/>}/>
       </Routes>
     </div>
   );
