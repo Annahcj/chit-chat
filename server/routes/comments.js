@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
   const { postId, author, comment } = req.body;
-  console.log(postId, author, comment)
+  console.log('new comment', postId, author, comment)
 })
 
 module.exports = router;

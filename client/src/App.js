@@ -12,7 +12,11 @@ const posts = [
 function App() {
   const [formAuthor, setFormAuthor] = useState('');
   const [formComment, setFormComment] = useState('');
-  const handleSubmit = (e, postId, author, comment) => {
+
+  const [postAuthor, setPostAuthor] = useState('');
+  const [postTitle, setPostTitle] = useState('');
+  const [postContent, setPostContent] = useState('');
+  const submitComment = (e, postId, author, comment) => {
     e.preventDefault();
     // call server-side endpoint to add comment to post
     const payload = {
@@ -20,7 +24,28 @@ function App() {
       comment,
       postId
     }
-    fetch('http://localhost:3000/comments', {
+    fetch('http://localhost:5500/comments', {
+      method: 'POST',
+      headers: {
+       'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => console.log(err))
+  }
+
+  const submitPost = (e, postAuthor, postTitle, postContent) => {
+    e.preventDefault();
+    // call server-side endpoint to add comment to post
+    const payload = {
+      author: postAuthor,
+      title: postTitle,
+      content: postContent
+    }
+    fetch('http://localhost:5500/posts/new', {
       method: 'POST',
       headers: {
        'Content-Type': 'application/json',
@@ -36,12 +61,12 @@ function App() {
   return (
     <div className="App">
       Welcome to ChitChat
-      <Link to="/" className="btn">Home</Link>
+      <Link to="/"><button className="btn">Home</button></Link>
       <Routes>
         <Route index element={<Posts posts={posts} />} />
         <Route path="/posts" element={<Posts posts={posts} />} />
-        <Route path="/posts/new" element={<PostForm />} />
-        <Route path="/posts/:id" element={<Post formAuthor={formAuthor} setFormAuthor={setFormAuthor} formComment={formComment} setFormComment={setFormComment} handleSubmit={handleSubmit}/>}/>
+        <Route path="/posts/new" element={<PostForm postAuthor={postAuthor} setPostAuthor={setPostAuthor} postTitle={postTitle} setPostTitle={setPostTitle} postContent={postContent} setPostContent={setPostContent} submitPost={submitPost}/>} />
+        <Route path="/posts/:id" element={<Post formAuthor={formAuthor} setFormAuthor={setFormAuthor} formComment={formComment} setFormComment={setFormComment} submitComment={submitComment}/>}/>
       </Routes>
     </div>
   );

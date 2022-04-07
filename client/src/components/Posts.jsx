@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 const Posts = ({ posts }) => {
   return (
-    <>
-    <Link to="/posts/new">New</Link>
+    <div className="posts">
+    <Link to="/posts/new"><button className="btn">New Post</button></Link>
     {posts.map((post) => <PostDisplay key={'post' + post.id} postId={post.id} title={post.title} likes={post.likes} dislikes={post.dislikes}/>)}
-    </>
+    </div>
   )
 }
 export default Posts;

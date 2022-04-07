@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
-const PostForm = ({  }) => {
-  // const [formAuthor, setFormAuthor] = useState('');
-  // const [formComment, setFormComment] = useState('');
+const PostForm = ({ postAuthor, setPostAuthor, postTitle, setPostTitle, postContent, setPostContent, submitPost }) => {
   return (
-    <>
-      {/* <form onSubmit={(e) => handleSubmit(e, postId, formAuthor, formComment)}>
-        <input type="text" placeholder="your name" value={formAuthor} onChange={(e) => setFormAuthor(e.target.value)}/>
-        <input type="text" placeholder="leave a comment" value={formComment} onChange={(e) => setFormComment(e.target.value)}/>
-        <input type="submit" value="Submit" />
-      </form> */}
-      Form
-    </>
+    <div className="form">
+      <form onSubmit={(e) => submitPost(e, postAuthor, postTitle, postContent)}>
+        <input type="text" placeholder="your name" value={postAuthor} onChange={(e) => setPostAuthor(e.target.value)}/>
+        <input type="text" placeholder="post title" value={postTitle} onChange={(e) => setPostTitle(e.target.value)}/>
+        <textarea placeholder="post content" value={postContent} onChange={(e) => setPostContent(e.target.value)}/>
+        <input type="submit" value="Submit" className="btn submit" />
+      </form>
+    </div>
   )
 }
 export default PostForm;

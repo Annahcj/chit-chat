@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 
 const PostDisplay = ({ postId, title, likes, dislikes }) => {
   return (
-    <div className="post-display">
-      <Link to={'/posts/' + postId}> 
+    <Link to={'/posts/' + postId}>
+      <div className="post-display">
         {title}
         <span>Likes: {likes}</span>
         <span>Dislikes: {dislikes}</span>
-      </Link>
-    </div>
+      </div>
+    </Link>
   )
 }
 
