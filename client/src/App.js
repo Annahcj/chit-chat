@@ -104,7 +104,7 @@ function App() {
         <Route index element={<Posts posts={posts} />} />
         <Route path="/posts" element={<Posts posts={posts} />} />
         <Route path="/posts/new" element={<PostForm postAuthor={postAuthor} setPostAuthor={setPostAuthor} postTitle={postTitle} setPostTitle={setPostTitle} postContent={postContent} setPostContent={setPostContent} submitPost={submitPost} />} />
-        <Route path="/posts/:id" element={<Post formAuthor={formAuthor} setFormAuthor={setFormAuthor} formComment={formComment} setFormComment={setFormComment} submitComment={submitComment} comments={comments} />} />
+        <Route path="/posts/:id" element={<Post formAuthor={formAuthor} setFormAuthor={setFormAuthor} formComment={formComment} setFormComment={setFormComment} submitComment={submitComment} comments={comments} posts={posts}/>} />
       </Routes>
     </div>
   );

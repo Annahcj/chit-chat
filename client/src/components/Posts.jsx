@@ -6,7 +6,7 @@ const Posts = ({ posts }) => {
   return (
     <div className="posts">
     <Link to="/posts/new"><button className="btn">New Post</button></Link>
-    {posts.map((post) => <PostDisplay key={'post' + post.id} postId={post.id} title={post.title} likes={post.likes} dislikes={post.dislikes}/>)}
+    {posts.map((post) => <PostDisplay key={'post' + post.id} postId={post.id} title={post.title}/>)}
     </div>
   )
 }
