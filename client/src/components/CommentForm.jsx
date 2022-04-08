@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-const CommentForm = ({ postId, submitComment }) => {
+const CommentForm = ({ postId, handleSubmitComment }) => {
   const [formAuthor, setFormAuthor] = useState('');
   const [formComment, setFormComment] = useState('');
 
   const handleSubmit = (evt) => {
-    submitComment(evt, postId, formAuthor, formComment)
+    handleSubmitComment(evt, postId, formAuthor, formComment)
     setFormAuthor('');
     setFormComment('');
 

@@ -13,7 +13,6 @@ router.post('/', (req, res) => {
       res.json(result)
     })
     .catch(err => console.log(err))
-  console.log('new comment', postId, author, comment)
 })
 
 module.exports = router;
