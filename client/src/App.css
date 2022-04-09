@@ -59,7 +59,7 @@
 }
 .post-display:hover {
   transition-duration: 400ms;
-  background-color: #f4f5ff;
+  background-color: #fbfbff;
 }
 
 a {
@@ -135,6 +135,17 @@ textarea {
   border-radius: 10px;
   padding: 40px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* Navbar styles */
+.nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 20px;
+}
+.nav > * {
+  margin-right: 10px;
 }
 
 @media screen and (min-width: 900px) {

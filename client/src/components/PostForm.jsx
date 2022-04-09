@@ -16,6 +16,7 @@ const PostForm = ({ submitPost }) => {
   }
   return (
     <div className="form">
+      <h3>Create a new post</h3>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="your name" value={postAuthor} onChange={(evt) => setPostAuthor(evt.target.value)}/>
         <input type="text" placeholder="post title" value={postTitle} onChange={(evt) => setPostTitle(evt.target.value)}/>

@@ -2,7 +2,8 @@ import './App.css';
 import Posts from './components/Posts';
 import Post from './components/Post';
 import PostForm from './components/PostForm';
-import { Routes, Route, Link } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import * as api from './api.js';
 
@@ -49,8 +50,7 @@ function App() {
 
   return (
     <div className="App">
-      Welcome to ChitChat
-      <Link to="/"><button className="btn">Home</button></Link>
+      <Navbar />
       <Routes>
         <Route index element={<Posts posts={posts} />} />
         <Route path="/posts" element={<Posts posts={posts} />} />
