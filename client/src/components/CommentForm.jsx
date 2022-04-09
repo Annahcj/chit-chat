@@ -8,11 +8,6 @@ const CommentForm = ({ postId, handleSubmitComment }) => {
     handleSubmitComment(evt, postId, formAuthor, formComment)
     setFormAuthor('');
     setFormComment('');
-
-    setTimeout(() => {
-      const scrollingElement = (document.scrollingElement || document.body);
-      scrollingElement.scrollTop = scrollingElement.scrollHeight;
-    }, 500)
   }
 
   return (

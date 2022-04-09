@@ -6,10 +6,6 @@ import { Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import * as api from './api.js';
 
-// const posts = [
-//   { id: 1, title: 'My first topic', content: 'Some example content :D', likes: 1, dislikes: 1, author: 'Anna' },
-//   { id: 2, title: 'My second topic', content: 'Some more example content :D', likes: 5, dislikes: 0, author: 'Snoopy' },
-// ]
 function App() {
 
   const [postAuthor, setPostAuthor] = useState('');
@@ -48,6 +44,8 @@ function App() {
       })
       .catch(err => console.log(err))
   }, [])
+
+  // Next task: Delete functionality for comments and posts
 
   return (
     <div className="App">

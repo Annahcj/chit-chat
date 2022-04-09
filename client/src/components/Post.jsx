@@ -34,8 +34,10 @@ const Post = ({ submitComment }) => {
 
   return (
     <div className="post">
-      <h1>{post.title} <span className="h3">By {post.author}</span></h1>
-      <p>{post.content}</p>
+      <div className="content">
+        <h1>{post.title} <span className="h3">By {post.author}</span></h1>
+        <p>{post.content}</p>
+      </div>
       {/* Comment form & Comments section below */}
       <div className="comment-divider">Comments: {comments.length}</div>
       <CommentForm postId={id} handleSubmitComment={handleSubmitComment}/>

@@ -4,7 +4,7 @@ const Comment = ({ author, comment }) => {
   return (
     <div className="comment">
       <span className="bold">{author}</span>
-      {comment}
+      <span className="comment-content">{comment}</span>
     </div>
   )
 }
