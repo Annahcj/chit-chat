@@ -19,7 +19,8 @@ const PostForm = ({ submitPost }) => {
       <h3>Create a new post</h3>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="your name" value={postAuthor} onChange={(evt) => setPostAuthor(evt.target.value)}/>
-        <input type="text" placeholder="post title" value={postTitle} onChange={(evt) => setPostTitle(evt.target.value)}/>
+        {/* <input type="text" placeholder="post title" value={postTitle} onChange={(evt) => setPostTitle(evt.target.value)}/> */}
+        <textarea className="postTitle" placeholder="post title" value={postTitle} onChange={(evt) => setPostTitle(evt.target.value)}/>
         <textarea placeholder="post content" value={postContent} onChange={(evt) => setPostContent(evt.target.value)}/>
         <input type="submit" value="Submit" className="btn submit" />
       </form>

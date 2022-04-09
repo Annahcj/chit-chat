@@ -62,6 +62,10 @@
   background-color: #fbfbff;
 }
 
+.postTitle {
+  height: 20px;
+}
+
 a {
   text-decoration: none;
 }
@@ -115,7 +119,7 @@ textarea {
 .comment {
   text-align: left;
   padding: 10px;
-  border-bottom: 1px solid rgb(221, 221, 221);
+  border-bottom: 1px solid rgb(241, 241, 241);
   font-size: 0.9rem;
 }
 .comment-content {
