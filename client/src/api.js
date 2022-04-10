@@ -49,4 +49,15 @@ export const addPost = (postAuthor, postTitle, postContent) => {
     .then(res => {
       return res.json();
     })
+    .catch(err => console.log(err))
+}
+
+export const deleteComment = (commentId, postId) => {
+  return fetch(`http://localhost:5500/comments/${postId}/${commentId}`, {
+    method: 'DELETE'
+  })
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => console.log(err))
 }

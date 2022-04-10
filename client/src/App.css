@@ -117,6 +117,7 @@ textarea {
 }
 
 .comment {
+  position: relative;
   text-align: left;
   padding: 10px;
   border-bottom: 1px solid rgb(241, 241, 241);
@@ -150,6 +151,23 @@ textarea {
 }
 .nav > * {
   margin-right: 10px;
+}
+
+/* Icon styling */
+.isVisible {
+  transition-duration: 800ms;
+  color: grey;
+}
+
+.isNotVisible {
+  transition-duration: 800ms;
+  color: white;
+}
+
+.icon {
+  position: absolute;
+  right: 5px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 900px) {

@@ -15,4 +15,16 @@ router.post('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
+router.delete('/:postId/:commentId', (req, res) => {
+  const { postId, commentId } = req.params;
+  db.deleteComment(commentId)
+    .then(() => {
+      return db.getCommentsByPostId(postId)
+    })
+    .then(comments => {
+      res.json({ comments })
+    })
+    .catch(err => console.log(err))
+})
+
 module.exports = router;
