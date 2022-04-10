@@ -154,14 +154,9 @@ textarea {
 }
 
 /* Icon styling */
-.isVisible {
-  transition-duration: 800ms;
-  color: rgb(155, 155, 155);
-}
 
 .isNotVisible {
-  transition-duration: 800ms;
-  color: white;
+  visibility: hidden;
 }
 
 .icon {
@@ -169,6 +164,7 @@ textarea {
   right: 5px;
   cursor: pointer;
   font-size: 1.5rem;
+  color:rgb(190, 190, 190);
 }
 
 .heading {

@@ -64,7 +64,7 @@ function App() {
       .catch(err => console.log(err))
   }, [])
 
-  // Next task: Delete functionality for comments and posts
+  // Next task: Search function
 
   return (
     <div className="App">
