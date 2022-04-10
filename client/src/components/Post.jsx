@@ -1,13 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 import * as api from '../api.js';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-const Post = ({ submitComment, deleteComment }) => {
+const Post = ({ submitComment, deleteComment, deletePost }) => {
   const { id } = useParams();
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
+
+  const navigate = useNavigate();
 
   const commentsRef = useRef();
 
@@ -34,21 +37,27 @@ const Post = ({ submitComment, deleteComment }) => {
 
   const handleDeleteComment = (commentId) => {
     deleteComment(commentId, id);
-    console.log('delete')
     // re-fetch comment data
     api.getPostAndCommentsByPostId(id)
       .then(data => {
-        console.log(data)
         setPost(data.post);
         setComments(data.comments);
       })
       .catch(err => console.log(err))
   }
 
+  const handleDeletePost = () => {
+    deletePost(id);
+    navigate('/');
+  }
+
   return (
     <div className="post">
       <div className="content">
-        <h1>{post.title} <span className="h3">By {post.author}</span></h1>
+        <div className="heading">
+          <h1>{post.title} <span className="h3">By {post.author}</span></h1>
+          <DeleteIcon className="icon" onClick={handleDeletePost}/>
+        </div>
         <p>{post.content}</p>
       </div>
       {/* Comment form & Comments section below */}

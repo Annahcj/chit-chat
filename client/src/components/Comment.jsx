@@ -8,7 +8,7 @@ const Comment = ({ commentId, author, comment, handleDeleteComment }) => {
     <div className="comment" onMouseEnter={() => setIsVisible(true)} onMouseLeave={() => setIsVisible(false)}>
       <span className="bold">{author}</span>
       <span className="comment-content">{comment}</span>
-      <DeleteIcon className={`${isVisible ? 'isVisible' : 'isNotVisible'} icon`} onClick={() => handleDeleteComment(commentId)}/>
+      <DeleteIcon className={`${isVisible ? '' : 'isNotVisible'} icon delete-icon`} onClick={() => handleDeleteComment(commentId)}/>
     </div>
   )
 }

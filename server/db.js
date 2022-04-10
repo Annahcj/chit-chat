@@ -11,7 +11,8 @@ module.exports = {
   getPostById,
   getCommentsByPostId,
   getPostAndCommentsByPostId,
-  deleteComment
+  deleteComment,
+  deletePost
 }
 
 function getPosts(db = connection) {
@@ -74,4 +75,10 @@ function deleteComment(comment_id, db = connection) {
   return db('comments')
     .del()
     .where('id', comment_id)
+}
+
+function deletePost(postId, db = connection) {
+  return db('posts')  
+    .del()
+    .where('id', postId)
 }

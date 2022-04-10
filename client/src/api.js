@@ -61,3 +61,13 @@ export const deleteComment = (commentId, postId) => {
     })
     .catch(err => console.log(err))
 }
+
+export const deletePost = (postId) => {
+  return fetch(`http://localhost:5500/posts/${postId}`, {
+    method: 'DELETE'
+  })
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => console.log(err))
+}

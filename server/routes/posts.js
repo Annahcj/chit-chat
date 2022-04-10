@@ -26,6 +26,18 @@ router.get('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
+router.delete('/:id', (req, res) => {
+  const id = +req.params.id;
+  db.deletePost(id)
+    .then(() => {
+      return db.getPostsAndComments()
+    })
+    .then(obj => {
+      res.json(obj)
+    })
+    .catch(err => console.log(err))
+})
+
 router.get('/', (req, res) => {
   // get all posts and comments from db
   db.getPostsAndComments()

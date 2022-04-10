@@ -45,6 +45,15 @@ function App() {
       .catch(err => console.log(err))
   }
 
+  const deletePost = (postId) => {
+    api.deletePost(postId)
+      .then(data => {
+        setPosts(data.posts);
+        setComments(data.comments);
+      })
+      .catch(err => console.log(err))
+  }
+
   useEffect(() => {
     // fetch posts and comments on first render
     api.getPostsAndComments()
@@ -64,7 +73,7 @@ function App() {
         <Route index element={<Posts posts={posts} />} />
         <Route path="/posts" element={<Posts posts={posts} />} />
         <Route path="/posts/new" element={<PostForm postAuthor={postAuthor} setPostAuthor={setPostAuthor} postTitle={postTitle} setPostTitle={setPostTitle} postContent={postContent} setPostContent={setPostContent} submitPost={submitPost} />} />
-        <Route path="/posts/:id" element={<Post submitComment={submitComment} deleteComment={deleteComment}/>} />
+        <Route path="/posts/:id" element={<Post submitComment={submitComment} deleteComment={deleteComment} deletePost={deletePost}/>} />
       </Routes>
     </div>
   );
