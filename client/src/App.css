@@ -173,6 +173,19 @@ textarea {
   align-items: center;
 }
 
+/* Search bar styles */
+.search-bar {
+  position: relative;
+}
+.search-input {
+  padding-right: 35px !important;
+}
+.search-icon {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
 @media screen and (min-width: 900px) {
   .post-display {
     width: 50%;
