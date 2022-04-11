@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import * as api from './api.js';
+import { hasMatch } from './functions.js';
 
 function App() {
 
@@ -64,14 +65,26 @@ function App() {
       .catch(err => console.log(err))
   }, [])
 
+  useEffect(() => {
+    setDisplayPosts(posts);
+  }, [posts])
+
   // Next task: Search function
+  const [displayPosts, setDisplayPosts] = useState([]);
+  const [searchKey, setSearchKey] = useState('');
+  const handleSearch = (e) => {
+    setSearchKey(e.target.value);
+    setDisplayPosts(posts.filter(post => {
+      return hasMatch(post.title.toLowerCase(), e.target.value);
+    }))
+  }
 
   return (
     <div className="App">
       <Navbar />
       <Routes>
-        <Route index element={<Posts posts={posts} />} />
-        <Route path="/posts" element={<Posts posts={posts} />} />
+        <Route index element={<Posts posts={displayPosts} searchKey={searchKey} setSearchKey={setSearchKey} handleSearch={handleSearch}/>} />
+        <Route path="/posts" element={<Posts posts={displayPosts} />} />
         <Route path="/posts/new" element={<PostForm postAuthor={postAuthor} setPostAuthor={setPostAuthor} postTitle={postTitle} setPostTitle={setPostTitle} postContent={postContent} setPostContent={setPostContent} submitPost={submitPost} />} />
         <Route path="/posts/:id" element={<Post submitComment={submitComment} deleteComment={deleteComment} deletePost={deletePost}/>} />
       </Routes>
