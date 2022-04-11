@@ -6,8 +6,8 @@ const db = require('../db.js');
 router.post('/', (req, res) => {
   const { postId, author, comment } = req.body;
   db.insertComment(postId, author, comment)
-    .then(() => {
-      return db.getPostsAndComments()
+    .then((ids) => {
+      return db.getCommentById(ids[0]);
     })
     .then(result => {
       res.json(result)
@@ -19,10 +19,7 @@ router.delete('/:postId/:commentId', (req, res) => {
   const { postId, commentId } = req.params;
   db.deleteComment(commentId)
     .then(() => {
-      return db.getCommentsByPostId(postId)
-    })
-    .then(comments => {
-      res.json({ comments })
+      res.json({})
     })
     .catch(err => console.log(err))
 })

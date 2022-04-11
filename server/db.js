@@ -9,6 +9,7 @@ module.exports = {
   insertComment,
   insertPost,
   getPostById,
+  getCommentById,
   getCommentsByPostId,
   getPostAndCommentsByPostId,
   deleteComment,
@@ -47,6 +48,13 @@ function insertPost(author, title, content, db = connection) {
 
 function getPostById(id, db = connection) {
   return db('posts')
+    .select()
+    .where('id', id)
+    .first()
+}
+
+function getCommentById(id, db = connection) {
+  return db('comments') 
     .select()
     .where('id', id)
     .first()

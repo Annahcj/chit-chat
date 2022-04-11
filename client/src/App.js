@@ -21,8 +21,17 @@ function App() {
     e.preventDefault();
     // call server-side endpoint to add comment to post and get comments
     api.addComment(author, comment, postId)
-      .then(data => {
-        setComments(data.comments)
+      .then(newComment => {
+        setComments([...comments, newComment])
+      })
+      .catch(err => console.log(err))
+  }
+
+  const deleteComment = (commentId, postId) => {
+    // call server-side endpoint /posts/postId/commentId
+    api.deleteComment(commentId, postId)
+      .then(() => {
+        setComments(comments.filter(comment => comment.id !== commentId));
       })
       .catch(err => console.log(err))
   }
@@ -31,26 +40,17 @@ function App() {
     evt.preventDefault();
     // call server-side endpoint to add comment to post and get posts
     api.addPost(postAuthor, postTitle, postContent)
-    .then(data => {
-      setPosts(data)
+    .then(newPost => {
+      setPosts([...posts, newPost])
     })
     .catch(err => console.log(err))
   }
 
-  const deleteComment = (commentId, postId) => {
-    // call server-side endpoint /posts/postId/commentId
-    api.deleteComment(commentId, postId)
-      .then(data => {
-        setComments(data.comments);
-      })
-      .catch(err => console.log(err))
-  }
-
   const deletePost = (postId) => {
     api.deletePost(postId)
-      .then(data => {
-        setPosts(data.posts);
-        setComments(data.comments);
+      .then(() => {
+        setPosts(posts.filter(post => post.id != postId));
+        setComments(comments.filter(comment => comment.post_id != postId));
       })
       .catch(err => console.log(err))
   }

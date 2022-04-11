@@ -6,14 +6,13 @@ const db = require('../db');
 router.post('/new', (req, res) => {
   const { author, title, content } = req.body;
   db.insertPost(author, title, content)
-    .then(() => {
-      return db.getPosts()
+    .then((ids) => {
+      return db.getPostById(ids[0])
     })
-    .then(posts => {
-      res.json(posts)
+    .then(post => {
+      res.json(post)
     })
     .catch(err => console.log(err))
-  // console.log('new post', author, title, content)
 })
 
 // get post and comments by post id
@@ -30,10 +29,7 @@ router.delete('/:id', (req, res) => {
   const id = +req.params.id;
   db.deletePost(id)
     .then(() => {
-      return db.getPostsAndComments()
-    })
-    .then(obj => {
-      res.json(obj)
+      res.json({})
     })
     .catch(err => console.log(err))
 })
