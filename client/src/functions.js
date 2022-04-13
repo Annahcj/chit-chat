@@ -3,6 +3,17 @@ export function hasMatch(title, searchKey) {
   return kmp(title, searchKey);
 }
 
+export function getCommentsCount(posts, comments) {
+  let res = {};
+  for (let post of posts) {
+    res[post.id] = 0;
+  }
+  for (let comment of comments) {
+    res[comment.post_id]++;
+  }
+  return res;
+}
+
 function kmp(str, substr) {
   if (!substr.length) return true;
   let lps = getLPS(substr);

@@ -49,11 +49,13 @@ function App() {
   }
 
   const deletePost = (postId) => {
+    postId = +postId
+
     api
       .deletePost(postId)
       .then(() => {
-        setPosts(posts.filter((post) => post.id != postId))
-        setComments(comments.filter((comment) => comment.post_id != postId))
+        setPosts(posts.filter((post) => post.id !== postId))
+        setComments(comments.filter((comment) => comment.post_id !== postId))
       })
       .catch((err) => console.log(err))
   }
@@ -73,7 +75,7 @@ function App() {
     setDisplayPosts(posts)
   }, [posts])
 
-  // Next task: Search function
+  // Search function
   const [displayPosts, setDisplayPosts] = useState([])
   const [searchKey, setSearchKey] = useState('')
   const handleSearch = (e) => {
@@ -97,10 +99,22 @@ function App() {
               searchKey={searchKey}
               setSearchKey={setSearchKey}
               handleSearch={handleSearch}
+              comments={comments}
             />
           }
         />
-        <Route path="/posts" element={<Posts posts={displayPosts} />} />
+        <Route
+          path="/posts"
+          element={
+            <Posts
+              posts={displayPosts}
+              searchKey={searchKey}
+              setSearchKey={setSearchKey}
+              handleSearch={handleSearch}
+              comments={comments}
+            />
+          }
+        />
         <Route
           path="/posts/new"
           element={
