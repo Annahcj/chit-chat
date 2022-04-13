@@ -1,5 +1,5 @@
 export const getPostsAndComments = () => {
-  return fetch('http://localhost:5500/posts', {
+  return fetch('/posts', {
     method: 'GET'
   })
     .then(res => res.json())
@@ -12,7 +12,7 @@ export const addComment = (author, comment, postId) => {
     comment,
     postId
   }
-  return fetch('http://localhost:5500/comments', {
+  return fetch('/comments', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export const addComment = (author, comment, postId) => {
 }
 
 export const getPostAndCommentsByPostId = (id) => {
-  return fetch(`http://localhost:5500/posts/${id}`, {
+  return fetch(`/posts/${id}`, {
       method: 'GET'
     })
     .then(res => res.json())
@@ -39,7 +39,7 @@ export const addPost = (postAuthor, postTitle, postContent) => {
     title: postTitle,
     content: postContent
   }
-  return fetch('http://localhost:5500/posts/new', {
+  return fetch('/posts/new', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export const addPost = (postAuthor, postTitle, postContent) => {
 }
 
 export const deleteComment = (commentId, postId) => {
-  return fetch(`http://localhost:5500/comments/${postId}/${commentId}`, {
+  return fetch(`/comments/${postId}/${commentId}`, {
     method: 'DELETE'
   })
     .then(res => {
@@ -63,7 +63,7 @@ export const deleteComment = (commentId, postId) => {
 }
 
 export const deletePost = (postId) => {
-  return fetch(`http://localhost:5500/posts/${postId}`, {
+  return fetch(`/posts/${postId}`, {
     method: 'DELETE'
   })
     .then(res => {

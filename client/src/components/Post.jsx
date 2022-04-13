@@ -21,7 +21,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
         setComments(data.comments);
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [id])
 
   const handleSubmitComment = (evt, postId, formAuthor, formComment) => {
     submitComment(evt, postId, formAuthor, formComment)
