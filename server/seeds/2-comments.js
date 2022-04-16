@@ -14,5 +14,6 @@ exports.seed = function (knex) {
     { id: 12, post_id: 2, author: 'Alice', comment: 'I know right! It\'s not from me, I just copy and pasted from wikipedia...', created_at: new Date('2022-04-10') },
     { id: 13, post_id: 2, author: 'Alice', comment: 'I\'ve run out of comment ideas now', created_at: new Date('2022-04-10') },
     { id: 14, post_id: 2, author: 'Alice', comment: 'I guess I\'ll just put random stuff...', created_at: new Date('2022-04-10') },
+    { id: 15, post_id: 3, author: 'Alice', comment: 'A new post... :D', created_at: new Date('2022-04-16') },
   ])
 }
