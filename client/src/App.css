@@ -132,6 +132,7 @@ textarea {
 .bold {
   font-weight: bold;
   margin-right: 5px;
+  color: orange;
 }
 
 .post, .form {
