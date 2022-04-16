@@ -150,6 +150,7 @@ textarea {
   color: rgb(148, 148, 148);
   font-weight: bold;
   margin-bottom: 30px;
+  position: relative;
 }
 
 .commentTime {

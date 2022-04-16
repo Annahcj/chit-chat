@@ -43,8 +43,8 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
   const handleDeleteComment = (commentId) => {
     deleteComment(commentId, id)
 
-    commentId = +commentId;
-    setComments(comments.filter(comment => comment.id !== commentId));
+    commentId = +commentId
+    setComments(comments.filter((comment) => comment.id !== commentId))
   }
 
   const handleDeletePost = () => {
@@ -59,14 +59,16 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
           <h1>
             {post.title} <span className="h3">By {post.author}</span>
           </h1>
+        </div>
+        <div className="postTime">
+          {moment(post.created_at).fromNow()}
           <DeleteIcon className="icon" onClick={handleDeletePost} />
         </div>
-        <div className="postTime">{moment(post.created_at).fromNow()}</div>
         <p>{post.content}</p>
       </div>
       {/* Comment form & Comments section below */}
       <div className="comment-divider">
-        <CommentIcon/>
+        <CommentIcon />
         <span className="commentCount">Comments: {comments.length}</span>
       </div>
       <CommentForm postId={id} handleSubmitComment={handleSubmitComment} />
