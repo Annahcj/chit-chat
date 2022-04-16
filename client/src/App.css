@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  box-sizing: border-box;
 }
 
 .App-logo {
@@ -161,7 +162,7 @@ textarea {
 }
 
 .post, .form {
-  width: 90%;
+  width: 75%;
   margin: 0 auto;
   text-align: left;
   background-color: white;
