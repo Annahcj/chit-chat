@@ -4,7 +4,7 @@ exports.up = (knex) => {
     table.string('author')
     table.string('title')
     table.string('content')
-    table.datetime('created_at').defaultTo(new Date())
+    table.datetime('created_at')
   })
 }
 

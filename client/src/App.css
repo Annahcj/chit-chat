@@ -151,6 +151,12 @@ textarea {
   margin-bottom: 30px;
 }
 
+.commentTime {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: grey;
+}
+
 .post, .form {
   width: 90%;
   margin: 0 auto;

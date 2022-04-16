@@ -82,6 +82,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
             commentId={comment.id}
             author={comment.author}
             comment={comment.comment}
+            created_at={comment.created_at}
             handleDeleteComment={handleDeleteComment}
           />
         )
