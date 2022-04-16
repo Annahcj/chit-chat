@@ -4,6 +4,8 @@ import Comment from './Comment'
 import CommentForm from './CommentForm'
 import * as api from '../api.js'
 import DeleteIcon from '@mui/icons-material/Delete'
+import CommentIcon from '@mui/icons-material/Comment'
+import moment from 'moment'
 
 const Post = ({ submitComment, deleteComment, deletePost }) => {
   const { id } = useParams()
@@ -19,6 +21,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
       .getPostAndCommentsByPostId(id)
       .then((data) => {
         setPost(data.post)
+        console.log(data.post)
         setComments(data.comments)
       })
       .catch((err) => console.log(err))
@@ -63,10 +66,14 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
           </h1>
           <DeleteIcon className="icon" onClick={handleDeletePost} />
         </div>
+        <div className="postTime">{moment(post.created_at).fromNow()}</div>
         <p>{post.content}</p>
       </div>
       {/* Comment form & Comments section below */}
-      <div className="comment-divider">Comments: {comments.length}</div>
+      <div className="comment-divider">
+        <CommentIcon/>
+        <span className="commentCount">Comments: {comments.length}</span>
+      </div>
       <CommentForm postId={id} handleSubmitComment={handleSubmitComment} />
       {comments.map((comment, idx) => {
         return (

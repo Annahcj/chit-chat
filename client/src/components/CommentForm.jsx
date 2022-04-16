@@ -13,9 +13,9 @@ const CommentForm = ({ postId, handleSubmitComment }) => {
   return (
     <div className="comment-form">
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="your name" value={formAuthor} onChange={(e) => setFormAuthor(e.target.value)}/>
-        <textarea placeholder="leave a comment" value={formComment} onChange={(e) => setFormComment(e.target.value)}/>
-        <input type="submit" value="Submit" className="btn submit" />
+        <input type="text" placeholder="your name" value={formAuthor} onChange={(e) => setFormAuthor(e.target.value)} required/>
+        <textarea placeholder="leave a comment" value={formComment} onChange={(e) => setFormComment(e.target.value)} required/>
+        <input type="submit" value="Submit" className="btn submit"  required/>
       </form>
     </div>
   )
