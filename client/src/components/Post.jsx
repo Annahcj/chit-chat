@@ -21,7 +21,6 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
       .getPostAndCommentsByPostId(id)
       .then((data) => {
         setPost(data.post)
-        console.log(data.post)
         setComments(data.comments)
       })
       .catch((err) => console.log(err))
@@ -30,6 +29,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
   const handleSubmitComment = (evt, postId, formAuthor, formComment) => {
     submitComment(evt, postId, formAuthor, formComment)
     // re-fetch post data & comments by postId from server side
+
     api
       .getPostAndCommentsByPostId(id)
       .then((data) => {
@@ -42,14 +42,9 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
 
   const handleDeleteComment = (commentId) => {
     deleteComment(commentId, id)
-    // re-fetch comment data
-    api
-      .getPostAndCommentsByPostId(id)
-      .then((data) => {
-        setPost(data.post)
-        setComments(data.comments)
-      })
-      .catch((err) => console.log(err))
+
+    commentId = +commentId;
+    setComments(comments.filter(comment => comment.id !== commentId));
   }
 
   const handleDeletePost = () => {
