@@ -11,7 +11,7 @@ const CommentForm = ({ postId, handleSubmitComment }) => {
   }
 
   return (
-    <div>
+    <div className="comment-form">
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="your name" value={formAuthor} onChange={(e) => setFormAuthor(e.target.value)}/>
         <textarea placeholder="leave a comment" value={formComment} onChange={(e) => setFormComment(e.target.value)}/>

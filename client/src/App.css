@@ -39,6 +39,7 @@
 
 .h3 {
   font-size: 0.7em;
+  color: orange;
 }
 
 .post-display {
@@ -141,6 +142,10 @@ textarea {
   border-radius: 10px;
   padding: 40px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.comment-form {
+  background-color: rgb(236, 236, 236);
 }
 
 /* Navbar styles */
