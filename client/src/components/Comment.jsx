@@ -9,8 +9,10 @@ const Comment = ({ commentId, author, comment, created_at, handleDeleteComment }
     <div className="comment" onMouseEnter={() => setIsVisible(true)} onMouseLeave={() => setIsVisible(false)}>
       <span className="bold">{author}</span>
       <span className="comment-content">{comment}</span>
-      <DeleteIcon className={`${isVisible ? '' : 'isNotVisible'} icon delete-icon`} onClick={() => handleDeleteComment(commentId)}/>
-      <div className="commentTime">{moment(created_at).fromNow()}</div>
+      <div className="commentTime">
+        <DeleteIcon className={`${isVisible ? '' : 'isNotVisible'} icon delete-icon`} onClick={() => handleDeleteComment(commentId)}/>
+        {moment(created_at).fromNow()}
+      </div>
     </div>
   )
 }

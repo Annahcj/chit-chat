@@ -146,15 +146,18 @@ textarea {
 
 .postTime {
   font-size: 0.9rem;
-  color: grey;
+  color: rgb(148, 148, 148);
   font-weight: bold;
   margin-bottom: 30px;
 }
 
 .commentTime {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: bold;
-  color: grey;
+  color: rgb(168, 168, 168);
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
 }
 
 .post, .form {
