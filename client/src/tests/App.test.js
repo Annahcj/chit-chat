@@ -10,11 +10,10 @@ jest.mock('../api.js')
 
 beforeEach(() => jest.clearAllMocks())
 
-// getPostsAndComments
 describe('<App />', () => {
   it('should call api.getPostsAndComments on render', async () => {
     expect.assertions(1);
-    
+
     api.getPostsAndComments.mockReturnValue(Promise.resolve({
       posts: [],
       comments: []
