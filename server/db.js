@@ -39,13 +39,11 @@ function getPostsAndComments(db = connection) {
 function insertComment(post_id, author, comment, db = connection) {
   return db('comments')
     .insert({ post_id, author, comment, created_at: new Date() }, 'id')
-    .then(id => [id])
 }
 
 function insertPost(author, title, content, db = connection) {
   return db('posts')
     .insert({ author, title, content, created_at: new Date() }, 'id')
-    .then(id => [id])
 }
 
 function getPostById(id, db = connection) {
