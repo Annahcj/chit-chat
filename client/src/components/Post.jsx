@@ -5,6 +5,7 @@ import CommentForm from './CommentForm'
 import * as api from '../api.js'
 import DeleteIcon from '@mui/icons-material/Delete'
 import CommentIcon from '@mui/icons-material/Comment'
+import { CircularProgress } from '@mui/material';
 import moment from 'moment'
 
 const Post = ({ submitComment, deleteComment, deletePost }) => {
@@ -12,16 +13,23 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
   const [post, setPost] = useState({})
   const [comments, setComments] = useState([])
 
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate()
 
   const commentsRef = useRef()
 
   useEffect(() => {
+    setLoading(true);
+
     api
       .getPostAndCommentsByPostId(id)
       .then((data) => {
         setPost(data.post)
         setComments(data.comments)
+      })
+      .finally(() => {
+        setLoading(false);
       })
       .catch((err) => console.log(err))
   }, [id])
@@ -52,6 +60,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
     navigate('/')
   }
 
+  if (loading) return <CircularProgress />
   return (
     <div className="post">
       <div className="content">
