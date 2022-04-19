@@ -14,7 +14,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier -w *.js routes seeds migrations",
-    "build": "cd client && npm install && npm run build && cd ../ && npm run knex migrate:latest && npm run knex seed:run"
+    "build": "cd client && npm install && npm run build && cd ../ && npm run knex migrate:latest"
   },
   "repository": {
     "type": "git",
