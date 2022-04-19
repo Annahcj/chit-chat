@@ -22,6 +22,7 @@ function App() {
     api
       .addComment(author, comment, postId)
       .then((newComment) => {
+        console.log({newComment})
         setComments([...comments, newComment])
       })
       .catch((err) => console.log(err))
@@ -43,7 +44,7 @@ function App() {
     api
       .addPost(postAuthor, postTitle, postContent)
       .then((newPost) => {
-        console.log({newPost})
+        // console.log({newPost})
         setPosts([...posts, newPost])
       })
       .catch((err) => console.log(err))
