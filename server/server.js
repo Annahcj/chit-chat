@@ -14,8 +14,8 @@ server.use(express.static(path.resolve(__dirname, '../client/build')))
 server.use(cors());
 
 // Routes
-server.use('/posts', postRoutes)
-server.use('/comments', commentRoutes)
+server.use('/api/posts', postRoutes)
+server.use('/api/comments', commentRoutes)
 
 server.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))
