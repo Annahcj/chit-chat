@@ -34,18 +34,12 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
       .catch((err) => console.log(err))
   }, [id])
 
-  const handleSubmitComment = (evt, postId, formAuthor, formComment) => {
-    submitComment(evt, postId, formAuthor, formComment)
+  const handleSubmitComment = async (evt, postId, formAuthor, formComment) => {
+    let newComment = await submitComment(evt, postId, formAuthor, formComment)
     // re-fetch post data & comments by postId from server side
-
-    api
-      .getPostAndCommentsByPostId(id)
-      .then((data) => {
-        setPost(data.post)
-        setComments(data.comments)
-        commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
-      })
-      .catch((err) => console.log(err))
+    console.log({newComment})
+    setComments([...comments, newComment]);
+    commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
   }
 
   const handleDeleteComment = (commentId) => {
