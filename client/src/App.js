@@ -43,6 +43,7 @@ function App() {
     api
       .addPost(postAuthor, postTitle, postContent)
       .then((newPost) => {
+        console.log({newPost})
         setPosts([...posts, newPost])
       })
       .catch((err) => console.log(err))
