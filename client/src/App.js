@@ -19,10 +19,11 @@ function App() {
   const submitComment = (e, postId, author, comment) => {
     e.preventDefault()
     // call server-side endpoint to add comment to post and get comments
-    api
+    return api
       .addComment(author, comment, postId)
       .then((newComment) => {
         setComments([...comments, newComment])
+        return newComment;
       })
       .catch((err) => console.log(err))
   }
