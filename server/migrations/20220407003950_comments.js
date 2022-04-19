@@ -7,7 +7,7 @@ exports.up = function(knex) {
     table.increments('id').primary()
     table.integer('post_id').references('posts.id').onDelete('CASCADE')
     table.string('author')
-    table.string('comment')
+    table.text('comment')
     table.datetime('created_at')
   })
 };

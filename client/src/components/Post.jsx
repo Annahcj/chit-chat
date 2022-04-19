@@ -37,7 +37,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
   const handleSubmitComment = async (evt, postId, formAuthor, formComment) => {
     let newComment = await submitComment(evt, postId, formAuthor, formComment)
     // re-fetch post data & comments by postId from server side
-    console.log({newComment})
+    // console.log({newComment})
     setComments([...comments, newComment]);
     commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
   }
