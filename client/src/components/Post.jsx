@@ -36,8 +36,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
 
   const handleSubmitComment = async (evt, postId, formAuthor, formComment) => {
     let newComment = await submitComment(evt, postId, formAuthor, formComment)
-    // re-fetch post data & comments by postId from server side
-    // console.log({newComment})
+
     setComments([...comments, newComment]);
     commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
   }
@@ -69,7 +68,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
         </div>
         <p>{post.content}</p>
       </div>
-      {/* Comment form & Comments section below */}
+      {/* Comment form & Comments section */}
       <div className="comment-divider">
         <CommentIcon />
         <span className="commentCount">Comments: {comments.length}</span>

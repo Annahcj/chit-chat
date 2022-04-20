@@ -22,7 +22,10 @@ function kmp(str, substr) {
       i++;
       if (i === substr.length) return true;
     } else {
-      if (i !== 0) i = lps[i - 1];
+      if (i !== 0) {
+        i = lps[i - 1];
+        j--;
+      }
     }
   }
   return false;
@@ -34,7 +37,10 @@ function getLPS(str) {
     if (str[i] === str[j]) {
       lps[j] = ++i;
     } else {
-      if (i !== 0) i = lps[i - 1];
+      if (i !== 0) {
+        i = lps[i - 1];
+        j--;
+      }
     }
   }
   return lps;
