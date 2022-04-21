@@ -6,6 +6,7 @@ export const getPosts = () => {
     try {
       dispatch({ type: LOAD_START })
       const posts = await api.getPosts();
+      console.log({posts}, 'GOT THE POSTS')
       dispatch({
         type: GET_POSTS,
         payload: posts

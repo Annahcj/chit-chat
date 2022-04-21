@@ -1,73 +1,89 @@
-export const getPostsAndComments = () => {
-  return fetch('/api/posts', {
-    method: 'GET'
+export const getPosts = () => {
+  return fetch('/posts', {
+    method: 'GET',
   })
-    .then(res => res.json())
-    .catch(err => console.log(err))
+    .then((res) => res.json())
+    .catch((err) => console.log(err))
+}
+
+export const getComments = () => {
+  return fetch('/comments', {
+    method: 'GET',
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err))
 }
 
 export const addComment = (author, comment, postId) => {
   const payload = {
     author,
     comment,
-    postId
+    postId,
   }
-  return fetch('/api/comments', {
+  return fetch('/comments', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
   })
-    .then(res => {
-      return res.json();
+    .then((res) => {
+      return res.json()
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
 }
 
-export const getPostAndCommentsByPostId = (id) => {
-  return fetch(`/api/posts/${id}`, {
-      method: 'GET'
+
+
+export const getPost = (id) => {
+  return fetch(`/posts/${id}`, {
+    method: 'GET',
+  })
+    .then((res) => {
+      return res.json()
     })
-    .then(res => res.json())
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
+}
+
+export const getCommentsByPostId = (post_id) => {
+
 }
 
 export const addPost = (postAuthor, postTitle, postContent) => {
   const payload = {
     author: postAuthor,
     title: postTitle,
-    content: postContent
+    content: postContent,
   }
-  return fetch('/api/posts/new', {
+  return fetch('/posts/new', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
   })
-    .then(res => {
-      return res.json();
+    .then((res) => {
+      return res.json()
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
 }
 
 export const deleteComment = (commentId, postId) => {
-  return fetch(`/api/comments/${postId}/${commentId}`, {
-    method: 'DELETE'
+  return fetch(`/comments/${postId}/${commentId}`, {
+    method: 'DELETE',
   })
-    .then(res => {
-      return res.json();
+    .then((res) => {
+      return res.json()
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
 }
 
 export const deletePost = (postId) => {
-  return fetch(`/api/posts/${postId}`, {
-    method: 'DELETE'
+  return fetch(`/posts/${postId}`, {
+    method: 'DELETE',
   })
-    .then(res => {
-      return res.json();
+    .then((res) => {
+      return res.json()
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
 }

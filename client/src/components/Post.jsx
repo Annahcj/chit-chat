@@ -2,36 +2,26 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
-import * as api from '../api.js'
 import DeleteIcon from '@mui/icons-material/Delete'
 import CommentIcon from '@mui/icons-material/Comment'
 import { CircularProgress } from '@mui/material';
 import moment from 'moment'
 
+import { useSelector, useDispatch } from 'react-redux';
+import { getPost } from '../state/actions/posts';
+
 const Post = ({ submitComment, deleteComment, deletePost }) => {
   const { id } = useParams()
-  const [post, setPost] = useState({})
+  const { loading, post } = useSelector(state => state.post);
   const [comments, setComments] = useState([])
-
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate()
 
   const commentsRef = useRef()
 
   useEffect(() => {
-    setLoading(true);
-
-    api
-      .getPostAndCommentsByPostId(id)
-      .then((data) => {
-        setPost(data.post)
-        setComments(data.comments)
-      })
-      .finally(() => {
-        setLoading(false);
-      })
-      .catch((err) => console.log(err))
+    dispatch(getPost(id))
   }, [id])
 
   const handleSubmitComment = async (evt, postId, formAuthor, formComment) => {
