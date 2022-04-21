@@ -1,5 +1,5 @@
 export const getPosts = () => {
-  return fetch('/posts', {
+  return fetch('/api/posts', {
     method: 'GET',
   })
     .then((res) => res.json())
@@ -7,7 +7,7 @@ export const getPosts = () => {
 }
 
 export const getComments = () => {
-  return fetch('/comments', {
+  return fetch('/api/comments', {
     method: 'GET',
   })
     .then((res) => res.json())
@@ -20,7 +20,7 @@ export const addComment = (author, comment, postId) => {
     comment,
     postId,
   }
-  return fetch('/comments', {
+  return fetch('/api/comments', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export const addComment = (author, comment, postId) => {
 
 
 export const getPost = (id) => {
-  return fetch(`/posts/${id}`, {
+  return fetch(`/api/posts/${id}`, {
     method: 'GET',
   })
     .then((res) => {
@@ -55,7 +55,7 @@ export const addPost = (postAuthor, postTitle, postContent) => {
     title: postTitle,
     content: postContent,
   }
-  return fetch('/posts/new', {
+  return fetch('/api/posts/new', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export const addPost = (postAuthor, postTitle, postContent) => {
 }
 
 export const deleteComment = (commentId, postId) => {
-  return fetch(`/comments/${postId}/${commentId}`, {
+  return fetch(`/api/comments/${postId}/${commentId}`, {
     method: 'DELETE',
   })
     .then((res) => {
@@ -79,7 +79,7 @@ export const deleteComment = (commentId, postId) => {
 }
 
 export const deletePost = (postId) => {
-  return fetch(`/posts/${postId}`, {
+  return fetch(`/api/posts/${postId}`, {
     method: 'DELETE',
   })
     .then((res) => {
