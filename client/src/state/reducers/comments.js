@@ -1,4 +1,4 @@
-import { GET_COMMENTS, GET_COMMENTS_BY_POST_ID, COMMENT_LOAD_START } from "../actionTypes"
+import { GET_COMMENTS, GET_COMMENTS_BY_POST_ID, COMMENT_LOAD_START, ADD_COMMENT } from "../actionTypes"
 
 const initialState = {
   comments: [],
@@ -14,6 +14,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, commentsByPostId: action.payload, loading: false };
     case COMMENT_LOAD_START:
       return { ...state, loading: true }
+    case ADD_COMMENT:
+      return { comments: [...state.comments, action.payload], commentsByPostId: [...state.commentsByPostId, action.payload], loading: false }
     default: 
       return state;
   }

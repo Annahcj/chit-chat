@@ -22,7 +22,7 @@ export const getCommentsByPostId = (id) => {
     .catch((err) => console.log(err))
 }
 
-export const addComment = (author, comment, postId) => {
+export const addComment = (postId, author, comment) => {
   const payload = {
     author,
     comment,

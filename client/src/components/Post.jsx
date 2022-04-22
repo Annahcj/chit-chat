@@ -9,7 +9,7 @@ import moment from 'moment'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { getPost } from '../state/actions/posts'
-import { getCommentsByPostId } from '../state/actions/comments'
+import { getCommentsByPostId, addComment } from '../state/actions/comments'
 
 const Post = ({ submitComment, deleteComment, deletePost }) => {
   const { id } = useParams()
@@ -26,15 +26,10 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
     dispatch(getCommentsByPostId(id))
   }, [id, dispatch])
 
-  useEffect(() => {
-    console.log(post, comments)
-  }, [post, comments])
 
   const handleSubmitComment = async (evt, postId, formAuthor, formComment) => {
-    let newComment = await submitComment(evt, postId, formAuthor, formComment)
-
-    // next: dispatch when new comment is added instead of sending to submitComment
-    // setComments([...comments, newComment]);
+    evt.preventDefault();
+    dispatch(addComment(postId, formAuthor, formComment));
     commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
   }
 

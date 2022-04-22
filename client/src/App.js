@@ -17,7 +17,7 @@ function App() {
   const [postContent, setPostContent] = useState('')
 
   const { comments } = useSelector(state => state.comments)
-  const { loading, posts } = useSelector(state => state.posts)
+  const { posts } = useSelector(state => state.posts)
 
   const dispatch = useDispatch();
 
