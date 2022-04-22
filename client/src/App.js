@@ -17,28 +17,6 @@ function App() {
 
   const dispatch = useDispatch();
 
-  // const deleteComment = (commentId, postId) => {
-  //   // call server-side endpoint /posts/postId/commentId
-  //   api
-  //     .deleteComment(commentId, postId)
-  //     .then(() => {
-  //       setComments(comments.filter((comment) => comment.id !== commentId))
-  //     })
-  //     .catch((err) => console.log(err))
-  // }
-
-  // const deletePost = (postId) => {
-  //   postId = +postId
-
-  //   api
-  //     .deletePost(postId)
-  //     .then(() => {
-  //       setPosts(posts.filter((post) => post.id !== postId))
-  //       setComments(comments.filter((comment) => comment.post_id !== postId))
-  //     })
-  //     .catch((err) => console.log(err))
-  // }
-
   useEffect(() => {
     // fetch posts and comments on first render
     dispatch(getPosts());
@@ -98,10 +76,7 @@ function App() {
         <Route
           path="/posts/:id"
           element={
-            <Post
-              // deleteComment={deleteComment}
-              // deletePost={deletePost}
-            />
+            <Post />
           }
         />
       </Routes>

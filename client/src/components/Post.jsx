@@ -8,10 +8,10 @@ import { CircularProgress } from '@mui/material'
 import moment from 'moment'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { getPost } from '../state/actions/posts'
+import { getPost, deletePost } from '../state/actions/posts'
 import { getCommentsByPostId, addComment, deleteComment } from '../state/actions/comments'
 
-const Post = ({ deletePost }) => {
+const Post = () => {
   const { id } = useParams()
   const { loading, post } = useSelector((state) => state.posts)
   const { loading: commentsLoading, commentsByPostId: comments } = useSelector(
@@ -38,7 +38,7 @@ const Post = ({ deletePost }) => {
   }
 
   const handleDeletePost = () => {
-    deletePost(id)
+    dispatch(deletePost(id))
     navigate('/')
   }
 

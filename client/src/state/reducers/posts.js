@@ -1,4 +1,4 @@
-import { GET_POSTS, ADD_POST, GET_POST, LOAD_START } from "../actionTypes"
+import { GET_POSTS, ADD_POST, GET_POST, LOAD_START, DELETE_POST } from "../actionTypes"
 
 const initialState = {
   posts: [],
@@ -16,6 +16,8 @@ const reducer = (state = initialState, action) => {
       return { posts: [...state.posts, action.payload], loading: true };
     case GET_POST:
       return { ...state, post: action.payload, loading: false };
+    case DELETE_POST:
+      return { ...state, posts: state.posts.filter(post => post.id != action.payload) } // cast action.payload to number
     default:
       return state;
   }
