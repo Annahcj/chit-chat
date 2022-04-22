@@ -7,7 +7,7 @@ router.post('/new', (req, res) => {
   const { author, title, content } = req.body;
   db.insertPost(author, title, content)
     .then((ids) => {
-      return db.getPostById(ids[0].id)
+      return db.getPostById(ids[0]) // for postgresql: ids[0].id
     })
     .then(post => {
       res.json(post)

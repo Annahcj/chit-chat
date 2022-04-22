@@ -2,9 +2,10 @@ import { GET_COMMENTS, GET_COMMENTS_BY_POST_ID, COMMENT_LOAD_START } from "../ac
 
 const initialState = {
   comments: [],
-  loading: false,
+  loading: true,
   commentsByPostId: []
 }
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COMMENTS:

@@ -36,6 +36,7 @@ export const getPost = (id) => {
     try {
       dispatch({ type: LOAD_START })
       const post = await api.getPost(id);
+      console.log(id, post)
       dispatch({
         type: GET_POST,
         payload: post

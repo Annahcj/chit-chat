@@ -4,18 +4,21 @@ import Comment from './Comment'
 import CommentForm from './CommentForm'
 import DeleteIcon from '@mui/icons-material/Delete'
 import CommentIcon from '@mui/icons-material/Comment'
-import { CircularProgress } from '@mui/material';
+import { CircularProgress } from '@mui/material'
 import moment from 'moment'
 
-import { useSelector, useDispatch } from 'react-redux';
-import { getPost } from '../state/actions/posts';
-import { getCommentsByPostId } from '../state/actions/comments';
+import { useSelector, useDispatch } from 'react-redux'
+import { getPost } from '../state/actions/posts'
+import { getCommentsByPostId } from '../state/actions/comments'
 
 const Post = ({ submitComment, deleteComment, deletePost }) => {
   const { id } = useParams()
-  const { loading, post } = useSelector(state => state.posts);
-  const { loading: commentsLoading, commentsByPostId: comments } = useSelector(state => state.comments);
-  const dispatch = useDispatch();
+  const { loading, post } = useSelector((state) => state.posts)
+  const { loading: commentsLoading, commentsByPostId: comments } = useSelector(
+    (state) => state.comments
+  )
+  // console.log('post', id, post, comments)
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
@@ -24,11 +27,16 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
   useEffect(() => {
     dispatch(getPost(id))
     dispatch(getCommentsByPostId(id))
-  }, [id])
+  }, [id, dispatch])
+
+  useEffect(() => {
+    console.log(post, comments, loading, commentsLoading)
+  }, [post, comments])
 
   const handleSubmitComment = async (evt, postId, formAuthor, formComment) => {
     let newComment = await submitComment(evt, postId, formAuthor, formComment)
 
+    // next: dispatch when new comment is added instead of sending to submitComment
     // setComments([...comments, newComment]);
     commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
   }
