@@ -14,6 +14,14 @@ export const getComments = () => {
     .catch((err) => console.log(err))
 }
 
+export const getCommentsByPostId = (id) => {
+  return fetch('/api/comments/:id', {
+    method: 'GET',
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err))
+}
+
 export const addComment = (author, comment, postId) => {
   const payload = {
     author,
@@ -43,10 +51,6 @@ export const getPost = (id) => {
       return res.json()
     })
     .catch((err) => console.log(err))
-}
-
-export const getCommentsByPostId = (post_id) => {
-
 }
 
 export const addPost = (postAuthor, postTitle, postContent) => {

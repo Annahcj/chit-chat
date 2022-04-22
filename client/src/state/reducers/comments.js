@@ -1,12 +1,20 @@
-import { GET_COMMENTS } from "../actionTypes"
+import { GET_COMMENTS, GET_COMMENTS_BY_POST_ID, COMMENT_LOAD_START } from "../actionTypes"
 
-const reducer = (comments = [], action) => {
-  console.log(action)
+const initialState = {
+  comments: [],
+  loading: false,
+  commentsByPostId: []
+}
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COMMENTS:
-      return action.payload;
+      return { ...state, comments: action.payload, loading: false }
+    case GET_COMMENTS_BY_POST_ID:
+      return { ...state, commentsByPostId: action.payload, loading: false };
+    case COMMENT_LOAD_START:
+      return { ...state, loading: true }
     default: 
-      return comments;
+      return state;
   }
 }
 export default reducer;

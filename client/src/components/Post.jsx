@@ -9,11 +9,12 @@ import moment from 'moment'
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getPost } from '../state/actions/posts';
+import { getCommentsByPostId } from '../state/actions/comments';
 
 const Post = ({ submitComment, deleteComment, deletePost }) => {
   const { id } = useParams()
-  const { loading, post } = useSelector(state => state.post);
-  const [comments, setComments] = useState([])
+  const { loading, post } = useSelector(state => state.posts);
+  const { loading: commentsLoading, commentsByPostId: comments } = useSelector(state => state.comments);
   const dispatch = useDispatch();
 
   const navigate = useNavigate()
@@ -22,12 +23,14 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
 
   useEffect(() => {
     dispatch(getPost(id))
+    dispatch(getCommentsByPostId(id))
+    console.log(post, comments, 'fetched')
   }, [id])
 
   const handleSubmitComment = async (evt, postId, formAuthor, formComment) => {
     let newComment = await submitComment(evt, postId, formAuthor, formComment)
 
-    setComments([...comments, newComment]);
+    // setComments([...comments, newComment]);
     commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
   }
 
@@ -35,7 +38,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
     deleteComment(commentId, id)
 
     commentId = +commentId
-    setComments(comments.filter((comment) => comment.id !== commentId))
+    // setComments(comments.filter((comment) => comment.id !== commentId))
   }
 
   const handleDeletePost = () => {
@@ -43,7 +46,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
     navigate('/')
   }
 
-  if (loading) return <CircularProgress />
+  if (loading || commentsLoading) return <CircularProgress />
   return (
     <div className="post">
       <div className="content">

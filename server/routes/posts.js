@@ -36,7 +36,7 @@ router.delete('/:id', (req, res) => {
 
 router.get('/', (req, res) => {
   // get all posts and comments from db
-  db.getPostsAndComments()
+  db.getPosts()
     .then(obj => {
       res.json(obj)
     })

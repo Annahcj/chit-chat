@@ -1,12 +1,11 @@
 import * as api from '../../api.js';
-import { GET_POSTS, ADD_POST, GET_POST, LOAD_START, LOAD_END } from '../actionTypes.js';
+import { GET_POSTS, ADD_POST, GET_POST, LOAD_START } from '../actionTypes.js';
 
 export const getPosts = () => {
   return async (dispatch) => {
     try {
       dispatch({ type: LOAD_START })
       const posts = await api.getPosts();
-      console.log({posts}, 'GOT THE POSTS')
       dispatch({
         type: GET_POSTS,
         payload: posts

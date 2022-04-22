@@ -6,6 +6,7 @@ import { getCommentsCount } from "../functions";
 
 const Posts = ({ posts, searchKey, handleSearch, comments }) => {
   let commentsCount = getCommentsCount(posts, comments);
+  console.log(posts, comments, 'posts and comments')
   return (
     <div className="posts">
       <Link to="/posts/new"><button className="btn">New Post</button></Link>

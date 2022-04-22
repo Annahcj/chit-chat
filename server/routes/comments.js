@@ -3,6 +3,23 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db.js');
 
+router.get('/', (req, res) => {
+  db.getComments()
+    .then(comments => {
+      res.json(comments);
+    })
+    .catch(err => console.log(err))
+})
+
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  db.getCommentsByPostId(id)
+    .then(comments => {
+      res.json(comments);
+    })
+    .catch(err => console.log(err))
+})
+
 router.post('/', (req, res) => {
   const { postId, author, comment } = req.body;
   db.insertComment(postId, author, comment)
@@ -16,7 +33,7 @@ router.post('/', (req, res) => {
 })
 
 router.delete('/:postId/:commentId', (req, res) => {
-  const { postId, commentId } = req.params;
+  const { commentId } = req.params;
   db.deleteComment(commentId)
     .then(() => {
       res.json({})

@@ -7,7 +7,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  console.log({type: action.type})
   switch (action.type) {
     case LOAD_START:
       return { ...state, loading: true };
