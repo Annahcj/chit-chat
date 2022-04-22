@@ -24,7 +24,6 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
   useEffect(() => {
     dispatch(getPost(id))
     dispatch(getCommentsByPostId(id))
-    console.log(post, comments, 'fetched')
   }, [id])
 
   const handleSubmitComment = async (evt, postId, formAuthor, formComment) => {

@@ -7,7 +7,6 @@ export const getComments = () => {
   return async (dispatch) => {
     try {
       const comments = await api.getComments();
-      console.log(comments)
       dispatch({
         type: GET_COMMENTS,
         payload: comments
@@ -25,7 +24,7 @@ export const getCommentsByPostId = (id) => {
         type: COMMENT_LOAD_START
       })
       const comments = await api.getCommentsByPostId(id);
-
+      console.log(comments, 'dispatched')
       dispatch({
         type: GET_COMMENTS_BY_POST_ID,
         payload: comments

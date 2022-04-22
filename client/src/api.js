@@ -15,7 +15,7 @@ export const getComments = () => {
 }
 
 export const getCommentsByPostId = (id) => {
-  return fetch('/api/comments/:id', {
+  return fetch(`/api/comments/${id}`, {
     method: 'GET',
   })
     .then((res) => res.json())

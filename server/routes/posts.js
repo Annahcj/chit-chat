@@ -15,10 +15,9 @@ router.post('/new', (req, res) => {
     .catch(err => console.log(err))
 })
 
-// get post and comments by post id
 router.get('/:id', (req, res) => {
   let id = +req.params.id;
-  db.getPostAndCommentsByPostId(id)
+  db.getPostById(id)
     .then(obj => {
       res.json(obj)
     })
