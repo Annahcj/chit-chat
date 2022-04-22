@@ -1,9 +1,15 @@
-import { GET_COMMENTS, GET_COMMENTS_BY_POST_ID, COMMENT_LOAD_START, ADD_COMMENT } from "../actionTypes"
+import {
+  GET_COMMENTS,
+  GET_COMMENTS_BY_POST_ID,
+  COMMENT_LOAD_START,
+  ADD_COMMENT,
+  DELETE_COMMENT,
+} from '../actionTypes'
 
 const initialState = {
   comments: [],
   loading: true,
-  commentsByPostId: []
+  commentsByPostId: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,13 +17,27 @@ const reducer = (state = initialState, action) => {
     case GET_COMMENTS:
       return { ...state, comments: action.payload, loading: false }
     case GET_COMMENTS_BY_POST_ID:
-      return { ...state, commentsByPostId: action.payload, loading: false };
+      return { ...state, commentsByPostId: action.payload, loading: false }
     case COMMENT_LOAD_START:
       return { ...state, loading: true }
     case ADD_COMMENT:
-      return { comments: [...state.comments, action.payload], commentsByPostId: [...state.commentsByPostId, action.payload], loading: false }
-    default: 
-      return state;
+      return {
+        comments: [...state.comments, action.payload],
+        commentsByPostId: [...state.commentsByPostId, action.payload],
+        loading: false,
+      }
+    case DELETE_COMMENT:
+      return {
+        comments: state.comments.filter(
+          (comment) => comment.id !== action.payload
+        ),
+        commentsByPostId: state.commentsByPostId.filter(
+          (comment) => comment.id !== action.payload
+        ),
+        loading: false,
+      }
+    default:
+      return state
   }
 }
-export default reducer;
+export default reducer

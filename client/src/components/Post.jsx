@@ -9,9 +9,9 @@ import moment from 'moment'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { getPost } from '../state/actions/posts'
-import { getCommentsByPostId, addComment } from '../state/actions/comments'
+import { getCommentsByPostId, addComment, deleteComment } from '../state/actions/comments'
 
-const Post = ({ submitComment, deleteComment, deletePost }) => {
+const Post = ({ deletePost }) => {
   const { id } = useParams()
   const { loading, post } = useSelector((state) => state.posts)
   const { loading: commentsLoading, commentsByPostId: comments } = useSelector(
@@ -34,10 +34,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
   }
 
   const handleDeleteComment = (commentId) => {
-    deleteComment(commentId, id)
-
-    commentId = +commentId
-    // setComments(comments.filter((comment) => comment.id !== commentId))
+    dispatch(deleteComment(commentId))
   }
 
   const handleDeletePost = () => {
