@@ -43,18 +43,6 @@ function App() {
   //     .catch((err) => console.log(err))
   // }
 
-  // const submitPost = (evt, postAuthor, postTitle, postContent) => {
-  //   evt.preventDefault()
-  //   // call server-side endpoint to add comment to post and get posts
-  //   api
-  //     .addPost(postAuthor, postTitle, postContent)
-  //     .then((newPost) => {
-  //       // console.log({newPost})
-  //       setPosts([...posts, newPost])
-  //     })
-  //     .catch((err) => console.log(err))
-  // }
-
   // const deletePost = (postId) => {
   //   postId = +postId
 
@@ -127,7 +115,6 @@ function App() {
               setPostTitle={setPostTitle}
               postContent={postContent}
               setPostContent={setPostContent}
-              // submitPost={submitPost}
             />
           }
         />

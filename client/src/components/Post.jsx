@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
@@ -17,11 +17,8 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
   const { loading: commentsLoading, commentsByPostId: comments } = useSelector(
     (state) => state.comments
   )
-  // console.log('post', id, post, comments)
   const dispatch = useDispatch()
-
   const navigate = useNavigate()
-
   const commentsRef = useRef()
 
   useEffect(() => {
@@ -30,7 +27,7 @@ const Post = ({ submitComment, deleteComment, deletePost }) => {
   }, [id, dispatch])
 
   useEffect(() => {
-    console.log(post, comments, loading, commentsLoading)
+    console.log(post, comments)
   }, [post, comments])
 
   const handleSubmitComment = async (evt, postId, formAuthor, formComment) => {
