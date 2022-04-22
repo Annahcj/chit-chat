@@ -12,26 +12,10 @@ import { getPosts } from './state/actions/posts';
 import { getComments } from './state/actions/comments';
 
 function App() {
-  const [postAuthor, setPostAuthor] = useState('')
-  const [postTitle, setPostTitle] = useState('')
-  const [postContent, setPostContent] = useState('')
-
   const { comments } = useSelector(state => state.comments)
   const { posts } = useSelector(state => state.posts)
 
   const dispatch = useDispatch();
-
-  // const submitComment = (e, postId, author, comment) => {
-  //   e.preventDefault()
-  //   // call server-side endpoint to add comment to post and get comments
-  //   return api
-  //     .addComment(author, comment, postId)
-  //     .then((newComment) => {
-  //       setComments([...comments, newComment])
-  //       return newComment;
-  //     })
-  //     .catch((err) => console.log(err))
-  // }
 
   // const deleteComment = (commentId, postId) => {
   //   // call server-side endpoint /posts/postId/commentId
@@ -108,21 +92,13 @@ function App() {
         <Route
           path="/posts/new"
           element={
-            <PostForm
-              postAuthor={postAuthor}
-              setPostAuthor={setPostAuthor}
-              postTitle={postTitle}
-              setPostTitle={setPostTitle}
-              postContent={postContent}
-              setPostContent={setPostContent}
-            />
+            <PostForm />
           }
         />
         <Route
           path="/posts/:id"
           element={
             <Post
-              // submitComment={submitComment}
               // deleteComment={deleteComment}
               // deletePost={deletePost}
             />
