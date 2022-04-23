@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
     case GET_POST:
       return { ...state, post: action.payload, loading: false };
     case DELETE_POST:
-      return { ...state, posts: state.posts.filter(post => post.id != action.payload) } // cast action.payload to number
+      return { ...state, posts: state.posts.filter(post => post.id !== action.payload) } // cast action.payload to number
     default:
       return state;
   }

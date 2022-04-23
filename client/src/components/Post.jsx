@@ -34,11 +34,11 @@ const Post = () => {
   }
 
   const handleDeleteComment = (commentId) => {
-    dispatch(deleteComment(commentId))
+    dispatch(deleteComment(+commentId))
   }
 
   const handleDeletePost = () => {
-    dispatch(deletePost(id))
+    dispatch(deletePost(+id))
     navigate('/')
   }
 
