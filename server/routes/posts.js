@@ -7,7 +7,7 @@ router.post('/new', (req, res) => {
   const { author, title, content } = req.body;
   db.insertPost(author, title, content)
     .then((ids) => {
-      return db.getPostById(ids[0].id)
+      return db.getPostById(ids[0]) // for postgresql: ids[0].id
     })
     .then(post => {
       res.json(post)
@@ -15,10 +15,9 @@ router.post('/new', (req, res) => {
     .catch(err => console.log(err))
 })
 
-// get post and comments by post id
 router.get('/:id', (req, res) => {
   let id = +req.params.id;
-  db.getPostAndCommentsByPostId(id)
+  db.getPostById(id)
     .then(obj => {
       res.json(obj)
     })
@@ -36,7 +35,7 @@ router.delete('/:id', (req, res) => {
 
 router.get('/', (req, res) => {
   // get all posts and comments from db
-  db.getPostsAndComments()
+  db.getPosts()
     .then(obj => {
       res.json(obj)
     })

@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { addPost } from '../state/actions/posts';
+import { useDispatch } from "react-redux";
 
-const PostForm = ({ submitPost }) => {
+const PostForm = () => {
   const [postAuthor, setPostAuthor] = useState('');
   const [postTitle, setPostTitle] = useState('');
   const [postContent, setPostContent] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   // add handleSubmit function here to call submitPost and reset form inputs
   const handleSubmit = (evt) => {
-    submitPost(evt, postAuthor, postTitle, postContent);
+    evt.preventDefault();
+    dispatch(addPost(postAuthor, postTitle, postContent));
     setPostAuthor('');
     setPostTitle('');
     setPostContent('');
