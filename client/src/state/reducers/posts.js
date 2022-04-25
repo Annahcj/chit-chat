@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
     case GET_POSTS:
       return { ...state, posts: action.payload, loading: false };
     case ADD_POST:
-      return { posts: [...state.posts, action.payload], loading: true };
+      return { ...state, posts: [...state.posts, action.payload] };
     case GET_POST:
       return { ...state, post: action.payload, loading: false };
     case DELETE_POST:

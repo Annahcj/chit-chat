@@ -7,21 +7,21 @@ import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { hasMatch } from './functions.js'
 
-import { useSelector, useDispatch } from 'react-redux';
-import { getPosts } from './state/actions/posts';
-import { getComments } from './state/actions/comments';
+import { useSelector, useDispatch } from 'react-redux'
+import { getPosts } from './state/actions/posts'
+import { getComments } from './state/actions/comments'
 
 function App() {
-  const { comments } = useSelector(state => state.comments)
-  const { posts } = useSelector(state => state.posts)
+  const { comments } = useSelector((state) => state.comments)
+  const { posts } = useSelector((state) => state.posts)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     // fetch posts and comments on first render
-    dispatch(getPosts());
-    dispatch(getComments());
-  }, [])
+    dispatch(getPosts())
+    dispatch(getComments())
+  }, [dispatch])
 
   useEffect(() => {
     setDisplayPosts(posts)
@@ -67,18 +67,8 @@ function App() {
             />
           }
         />
-        <Route
-          path="/posts/new"
-          element={
-            <PostForm />
-          }
-        />
-        <Route
-          path="/posts/:id"
-          element={
-            <Post />
-          }
-        />
+        <Route path="/posts/new" element={<PostForm />} />
+        <Route path="/posts/:id" element={<Post />} />
       </Routes>
     </div>
   )

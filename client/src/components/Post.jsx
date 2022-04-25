@@ -9,10 +9,17 @@ import moment from 'moment'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { getPost, deletePost } from '../state/actions/posts'
-import { getCommentsByPostId, addComment, deleteComment } from '../state/actions/comments'
+import {
+  getCommentsByPostId,
+  addComment,
+  deleteComment,
+} from '../state/actions/comments'
 
 const Post = () => {
   const { id } = useParams()
+
+  // because I have to call dispatch with the id on the first render, the post is initially undefined.
+  // I had to set the loading state to false on the ADD_POST action for it to load
   const { loading, post } = useSelector((state) => state.posts)
   const { loading: commentsLoading, commentsByPostId: comments } = useSelector(
     (state) => state.comments
@@ -26,10 +33,9 @@ const Post = () => {
     dispatch(getCommentsByPostId(id))
   }, [id, dispatch])
 
-
   const handleSubmitComment = async (evt, postId, formAuthor, formComment) => {
-    evt.preventDefault();
-    dispatch(addComment(postId, formAuthor, formComment));
+    evt.preventDefault()
+    dispatch(addComment(postId, formAuthor, formComment))
     commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
   }
 
