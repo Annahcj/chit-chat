@@ -188,6 +188,27 @@ textarea {
   margin-right: 10px;
 }
 
+.logout-button, .login-button {
+  position: absolute;
+  right: 1%;
+  background-color: rgb(255, 138, 91);
+}
+.logout-button:hover {
+  background-color: rgb(255, 123, 71);
+}
+
+.login-button, .signup-button {
+  background-color: rgb(80, 162, 255);
+}
+.login-button:hover, .signup-button:hover {
+  background-color: rgb(49, 145, 255);
+}
+
+.signup-button {
+  position: absolute;
+  right: 70px;
+}
+
 /* Icon styling */
 
 .isNotVisible {
@@ -235,6 +256,7 @@ textarea {
 .comment-icon {
   color: rgb(93, 93, 93);
 }
+
 
 @media screen and (min-width: 900px) {
   .post-display {
