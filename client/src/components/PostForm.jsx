@@ -2,19 +2,22 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { addPost } from '../state/actions/posts'
 import { useDispatch } from 'react-redux'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const PostForm = () => {
-  const [postAuthor, setPostAuthor] = useState('')
+  // const [postAuthor, setPostAuthor] = useState('')
   const [postTitle, setPostTitle] = useState('')
   const [postContent, setPostContent] = useState('')
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const { user } = useAuth0();
+
   // add handleSubmit function here to call submitPost and reset form inputs
   const handleSubmit = (evt) => {
     evt.preventDefault()
-    dispatch(addPost(postAuthor, postTitle, postContent))
-    setPostAuthor('')
+    // next task: add auth0Id (user.sub)
+    dispatch(addPost(user.nickname, postTitle, postContent))
     setPostTitle('')
     setPostContent('')
     navigate('/')
@@ -23,13 +26,6 @@ const PostForm = () => {
     <div className="form">
       <h3>Create a new post</h3>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="your name"
-          value={postAuthor}
-          onChange={(evt) => setPostAuthor(evt.target.value)}
-          required
-        />
         <textarea
           className="postTitle"
           placeholder="post title"

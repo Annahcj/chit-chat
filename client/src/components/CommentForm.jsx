@@ -2,14 +2,13 @@ import React, { useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 
 const CommentForm = ({ postId, handleSubmitComment }) => {
-  const [formAuthor, setFormAuthor] = useState('')
   const [formComment, setFormComment] = useState('')
 
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   const handleSubmit = (evt) => {
-    handleSubmitComment(evt, postId, formAuthor, formComment)
-    setFormAuthor('')
+    // next task: add auth0Id (user.sub)
+    handleSubmitComment(evt, postId, user.nickname, formComment)
     setFormComment('')
   }
 
@@ -17,13 +16,6 @@ const CommentForm = ({ postId, handleSubmitComment }) => {
   return (
     <div className="comment-form">
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="your name"
-          value={formAuthor}
-          onChange={(e) => setFormAuthor(e.target.value)}
-          required
-        />
         <textarea
           placeholder="leave a comment"
           value={formComment}
