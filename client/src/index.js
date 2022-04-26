@@ -19,6 +19,7 @@ ReactDOM.render(
       domain="whai-2022-anna.au.auth0.com"
       clientId="KPeD8i6N1ofkYoAneDEs7nBQ6SfMbK4c"
       audience="https://api"
+      redirectUri={window.location.origin}
     >
       <Provider store={store}>
         <Router>

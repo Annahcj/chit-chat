@@ -4,13 +4,20 @@ import { Link } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search'
 import { getCommentsCount } from '../functions'
 
+import { useAuth0 } from '@auth0/auth0-react'
+
 const Posts = ({ posts, searchKey, handleSearch, comments }) => {
   let commentsCount = getCommentsCount(posts, comments)
+
+  const { isAuthenticated } = useAuth0()
+
   return (
     <div className="posts">
-      <Link to="/posts/new">
-        <button className="btn">New Post</button>
-      </Link>
+      {isAuthenticated && (
+        <Link to="/posts/new">
+          <button className="btn">New Post</button>
+        </Link>
+      )}
       <span className="search-bar">
         <input
           type="text"

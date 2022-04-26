@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const CommentForm = ({ postId, handleSubmitComment }) => {
   const [formAuthor, setFormAuthor] = useState('')
   const [formComment, setFormComment] = useState('')
+
+  const { isAuthenticated } = useAuth0();
 
   const handleSubmit = (evt) => {
     handleSubmitComment(evt, postId, formAuthor, formComment)
@@ -10,6 +13,7 @@ const CommentForm = ({ postId, handleSubmitComment }) => {
     setFormComment('')
   }
 
+  if (!isAuthenticated) return <p>Please login to make a comment</p>
   return (
     <div className="comment-form">
       <form onSubmit={handleSubmit}>
