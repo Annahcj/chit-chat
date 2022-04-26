@@ -15,26 +15,33 @@ import {
   deleteComment,
 } from '../state/actions/comments'
 
+import { useAuth0 } from '@auth0/auth0-react'
+
 const Post = () => {
   const { id } = useParams()
 
-  // because I have to call dispatch with the id on the first render, the post is initially undefined.
-  // I had to set the loading state to false on the ADD_POST action for it to load
   const { loading, post } = useSelector((state) => state.posts)
   const { loading: commentsLoading, commentsByPostId: comments } = useSelector(
     (state) => state.comments
   )
-  console.log(post, comments)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const commentsRef = useRef()
+
+  const { isAuthenticated, user } = useAuth0()
 
   useEffect(() => {
     dispatch(getPost(id))
     dispatch(getCommentsByPostId(id))
   }, [id, dispatch])
 
-  const handleSubmitComment = async (evt, postId, formAuthor, formComment, auth0Id) => {
+  const handleSubmitComment = async (
+    evt,
+    postId,
+    formAuthor,
+    formComment,
+    auth0Id
+  ) => {
     evt.preventDefault()
     dispatch(addComment(postId, formAuthor, formComment, auth0Id))
     commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
@@ -60,7 +67,9 @@ const Post = () => {
         </div>
         <div className="postTime">
           {moment(post.created_at).fromNow()}
-          <DeleteIcon className="icon" onClick={handleDeletePost} />
+          {isAuthenticated && user.sub === post.auth0Id && (
+            <DeleteIcon className="icon" onClick={handleDeletePost} />
+          )}
         </div>
         <p>{post.content}</p>
       </div>
@@ -78,6 +87,7 @@ const Post = () => {
             author={comment.author}
             comment={comment.comment}
             created_at={comment.created_at}
+            auth0Id={comment.auth0Id}
             handleDeleteComment={handleDeleteComment}
           />
         )
