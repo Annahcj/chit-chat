@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 
 const PostForm = () => {
-  // const [postAuthor, setPostAuthor] = useState('')
   const [postTitle, setPostTitle] = useState('')
   const [postContent, setPostContent] = useState('')
   const navigate = useNavigate()
@@ -16,8 +15,9 @@ const PostForm = () => {
   // add handleSubmit function here to call submitPost and reset form inputs
   const handleSubmit = (evt) => {
     evt.preventDefault()
-    // next task: add auth0Id (user.sub)
-    dispatch(addPost(user.nickname, postTitle, postContent))
+    
+    console.log(user.sub, user)
+    dispatch(addPost(user.nickname, postTitle, postContent, user.sub))
     setPostTitle('')
     setPostContent('')
     navigate('/')

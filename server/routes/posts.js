@@ -4,8 +4,8 @@ const router = express.Router();
 const db = require('../db');
 
 router.post('/new', (req, res) => {
-  const { author, title, content } = req.body;
-  db.insertPost(author, title, content)
+  const { author, title, content, auth0Id } = req.body;
+  db.insertPost(author, title, content, auth0Id)
     .then((ids) => {
       return db.getPostById(ids[0]) // for postgresql: ids[0].id
     })

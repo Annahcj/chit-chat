@@ -5,6 +5,7 @@ exports.up = (knex) => {
     table.string('title')
     table.text('content')
     table.datetime('created_at')
+    table.string('auth0Id')
   })
 }
 

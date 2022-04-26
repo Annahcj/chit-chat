@@ -16,10 +16,10 @@ export const getPosts = () => {
   }
 }
 
-export const addPost = (postAuthor, postTitle, postContent) => {
+export const addPost = (postAuthor, postTitle, postContent, auth0Id) => {
   return async (dispatch) => {
     try {
-      const newPost = await api.addPost(postAuthor, postTitle, postContent);
+      const newPost = await api.addPost(postAuthor, postTitle, postContent, auth0Id);
 
       dispatch({
         type: ADD_POST,

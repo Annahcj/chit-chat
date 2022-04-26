@@ -9,6 +9,7 @@ exports.up = function(knex) {
     table.string('author')
     table.text('comment')
     table.datetime('created_at')
+    table.string('auth0Id')
   })
 };
 

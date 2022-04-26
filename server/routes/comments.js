@@ -21,8 +21,8 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const { postId, author, comment } = req.body;
-  db.insertComment(postId, author, comment)
+  const { postId, author, comment, auth0Id } = req.body;
+  db.insertComment(postId, author, comment, auth0Id)
     .then((ids) => {
       return db.getCommentById(ids[0]); // for postgresql: ids[0].id
     })

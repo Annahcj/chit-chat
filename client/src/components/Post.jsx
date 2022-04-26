@@ -24,6 +24,7 @@ const Post = () => {
   const { loading: commentsLoading, commentsByPostId: comments } = useSelector(
     (state) => state.comments
   )
+  console.log(post, comments)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const commentsRef = useRef()
@@ -33,9 +34,9 @@ const Post = () => {
     dispatch(getCommentsByPostId(id))
   }, [id, dispatch])
 
-  const handleSubmitComment = async (evt, postId, formAuthor, formComment) => {
+  const handleSubmitComment = async (evt, postId, formAuthor, formComment, auth0Id) => {
     evt.preventDefault()
-    dispatch(addComment(postId, formAuthor, formComment))
+    dispatch(addComment(postId, formAuthor, formComment, auth0Id))
     commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
   }
 

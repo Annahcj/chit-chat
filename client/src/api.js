@@ -22,11 +22,12 @@ export const getCommentsByPostId = (id) => {
     .catch((err) => console.log(err))
 }
 
-export const addComment = (postId, author, comment) => {
+export const addComment = (postId, author, comment, auth0Id) => {
   const payload = {
     author,
     comment,
     postId,
+    auth0Id
   }
   return fetch('/api/comments', {
     method: 'POST',
@@ -53,11 +54,12 @@ export const getPost = (id) => {
     .catch((err) => console.log(err))
 }
 
-export const addPost = (postAuthor, postTitle, postContent) => {
+export const addPost = (postAuthor, postTitle, postContent, auth0Id) => {
   const payload = {
     author: postAuthor,
     title: postTitle,
     content: postContent,
+    auth0Id
   }
   return fetch('/api/posts/new', {
     method: 'POST',

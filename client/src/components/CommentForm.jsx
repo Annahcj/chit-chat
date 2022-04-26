@@ -7,8 +7,7 @@ const CommentForm = ({ postId, handleSubmitComment }) => {
   const { isAuthenticated, user } = useAuth0();
 
   const handleSubmit = (evt) => {
-    // next task: add auth0Id (user.sub)
-    handleSubmitComment(evt, postId, user.nickname, formComment)
+    handleSubmitComment(evt, postId, user.nickname, formComment, user.sub)
     setFormComment('')
   }
 
