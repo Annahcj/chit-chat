@@ -1,5 +1,4 @@
 # chit-chat
-# Test
 
 # Online bulletin board for team collaboration, forum, discussion, suggestions and feedback and more.
  
