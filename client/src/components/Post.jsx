@@ -43,7 +43,7 @@ const Post = () => {
     auth0Id
   ) => {
     evt.preventDefault()
-    // get access token
+    
     const token = await getAccessTokenSilently()
 
     await dispatch(addComment(postId, formAuthor, formComment, auth0Id, token))

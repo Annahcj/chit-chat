@@ -6,7 +6,7 @@ const Navbar = () => {
   const { isAuthenticated, logout, loginWithRedirect } = useAuth0();
 
   const handleLogout = () => {
-    logout()
+    logout({ returnTo: window.location.origin })
   }
 
   const handleLogin = () => {
