@@ -37,15 +37,23 @@ function getPostsAndComments(db = connection) {
 }
 
 function insertComment(post_id, author, comment, auth0Id, db = connection) {
-  return db('comments')
+  if (environment === 'production') {
+    return db('comments')
     .insert({ post_id, author, comment, auth0Id, created_at: new Date() })
     .returning('id') // only for postgresql
+  } 
+  return db('comments')
+    .insert({ post_id, author, comment, auth0Id, created_at: new Date() })
 }
 
 function insertPost(author, title, content, auth0Id, db = connection) {
-  return db('posts')
+  if (environment === 'production') {
+    return db('posts')
     .insert({ author, title, content, auth0Id, created_at: new Date() })
     .returning('id') // only for postgresql
+  }
+  return db('posts')
+    .insert({ author, title, content, auth0Id, created_at: new Date() })
 }
 
 function getPostById(id, db = connection) {
