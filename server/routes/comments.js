@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db.js');
 
+const checkJwt = require('../auth0');
+
 router.get('/', (req, res) => {
   db.getComments()
     .then(comments => {
@@ -32,7 +34,7 @@ router.post('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.delete('/:postId/:commentId', (req, res) => {
+router.delete('/:postId/:commentId', checkJwt, (req, res) => {
   const { commentId } = req.params;
   db.deleteComment(commentId)
     .then(() => {

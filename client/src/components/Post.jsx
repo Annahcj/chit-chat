@@ -48,7 +48,8 @@ const Post = () => {
   }
 
   const handleDeleteComment = async (commentId) => {
-    dispatch(deleteComment(+commentId))
+    const token = await getAccessTokenSilently()
+    dispatch(deleteComment(+commentId, +id, token))
   }
 
   const handleDeletePost = async () => {

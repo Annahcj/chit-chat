@@ -54,10 +54,10 @@ export const addComment = (postId, formAuthor, formComment, auth0Id) => {
   }
 }
 
-export const deleteComment = (id) => {
+export const deleteComment = (id, postId, token) => {
   return async (dispatch) => {
     try {
-      await api.deleteComment(id);
+      await api.deleteComment(id, postId, token);
 
       dispatch({
         type: DELETE_COMMENT,

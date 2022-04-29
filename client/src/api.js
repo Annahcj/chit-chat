@@ -77,9 +77,12 @@ export const addPost = (postAuthor, postTitle, postContent, auth0Id, token) => {
     .catch((err) => console.log(err))
 }
 
-export const deleteComment = (commentId, postId) => {
+export const deleteComment = (commentId, postId, token) => {
   return fetch(`/api/comments/${postId}/${commentId}`, {
     method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
   })
     .then((res) => {
       return res.json()
