@@ -26,7 +26,7 @@ router.post('/', checkJwt, (req, res) => {
   const { postId, author, comment, auth0Id } = req.body;
   db.insertComment(postId, author, comment, auth0Id)
     .then((ids) => {
-      return db.getCommentById(ids[0]); // for postgresql: ids[0].id
+      return db.getCommentById(ids[0].id); // sqlite3: ids[0], postgresql: ids[0].id
     })
     .then(result => {
       res.json(result)
