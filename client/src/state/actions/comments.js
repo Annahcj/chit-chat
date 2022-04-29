@@ -38,12 +38,12 @@ export const getCommentsByPostId = (id) => {
   }
 }
 
-export const addComment = (postId, formAuthor, formComment, auth0Id) => {
+export const addComment = (postId, formAuthor, formComment, auth0Id, token) => {
   return async (dispatch) => {
     try {
       dispatch({ type: COMMENT_LOAD_START })
 
-      const newComment = await api.addComment(postId, formAuthor, formComment, auth0Id)
+      const newComment = await api.addComment(postId, formAuthor, formComment, auth0Id, token)
       dispatch({
         type: ADD_COMMENT,
         payload: newComment,

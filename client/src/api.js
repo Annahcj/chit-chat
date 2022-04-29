@@ -24,7 +24,7 @@ export const getCommentsByPostId = (id) => {
     .catch((err) => console.log(err))
 }
 
-export const addComment = (postId, author, comment, auth0Id) => {
+export const addComment = (postId, author, comment, auth0Id, token) => {
   const payload = {
     author,
     comment,
@@ -35,6 +35,7 @@ export const addComment = (postId, author, comment, auth0Id) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify(payload),
   })

@@ -43,7 +43,11 @@ const Post = () => {
     auth0Id
   ) => {
     evt.preventDefault()
-    dispatch(addComment(postId, formAuthor, formComment, auth0Id))
+
+    // take token in here
+    const token = await getAccessTokenSilently()
+
+    await dispatch(addComment(postId, formAuthor, formComment, auth0Id, token))
     commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
   }
 

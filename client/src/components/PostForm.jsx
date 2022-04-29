@@ -12,19 +12,17 @@ const PostForm = () => {
 
   const { user, getAccessTokenSilently } = useAuth0();
 
-  // add handleSubmit function here to call submitPost and reset form inputs
   const handleSubmit = async (evt) => {
     evt.preventDefault()
     
-    // console.log(user.sub, user)
     const token = await getAccessTokenSilently()
-    console.log(token)
 
     dispatch(addPost(user.nickname, postTitle, postContent, user.sub, token))
     setPostTitle('')
     setPostContent('')
     navigate('/')
   }
+
   return (
     <div className="form">
       <h3>Create a new post</h3>

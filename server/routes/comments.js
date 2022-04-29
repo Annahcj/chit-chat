@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.post('/', (req, res) => {
+router.post('/', checkJwt, (req, res) => {
   const { postId, author, comment, auth0Id } = req.body;
   db.insertComment(postId, author, comment, auth0Id)
     .then((ids) => {
