@@ -13,9 +13,6 @@ const Navbar = () => {
     loginWithRedirect()
   }
 
-  const handleSignup = () => {
-    loginWithRedirect()
-  }
 
   return (
     <div className="nav">
@@ -28,7 +25,6 @@ const Navbar = () => {
       ) : (
         <>
           <button className="btn login-button" onClick={handleLogin}>Login</button>
-          <button className="btn signup-button" onClick={handleSignup}>Sign Up</button>
         </>
       )}
     </div>

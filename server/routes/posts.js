@@ -3,7 +3,9 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-router.post('/new', (req, res) => {
+const checkJwt = require('../auth0');
+
+router.post('/new', checkJwt, (req, res) => {
   const { author, title, content, auth0Id } = req.body;
   db.insertPost(author, title, content, auth0Id)
     .then((ids) => {
@@ -24,7 +26,7 @@ router.get('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', checkJwt, (req, res) => {
   const id = +req.params.id;
   db.deletePost(id)
     .then(() => {

@@ -28,7 +28,7 @@ const Post = () => {
   const navigate = useNavigate()
   const commentsRef = useRef()
 
-  const { isAuthenticated, user } = useAuth0()
+  const { isAuthenticated, user, getAccessTokenSilently } = useAuth0()
 
   useEffect(() => {
     dispatch(getPost(id))
@@ -47,12 +47,14 @@ const Post = () => {
     commentsRef.current.scrollIntoView({ behavior: 'smooth' }) // automatically scroll down when new comment is added
   }
 
-  const handleDeleteComment = (commentId) => {
+  const handleDeleteComment = async (commentId) => {
     dispatch(deleteComment(+commentId))
   }
 
-  const handleDeletePost = () => {
-    dispatch(deletePost(+id))
+  const handleDeletePost = async () => {
+    const token = await getAccessTokenSilently()
+
+    dispatch(deletePost(+id, token))
     navigate('/')
   }
 

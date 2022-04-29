@@ -16,10 +16,10 @@ export const getPosts = () => {
   }
 }
 
-export const addPost = (postAuthor, postTitle, postContent, auth0Id) => {
+export const addPost = (postAuthor, postTitle, postContent, auth0Id, token) => {
   return async (dispatch) => {
     try {
-      const newPost = await api.addPost(postAuthor, postTitle, postContent, auth0Id);
+      const newPost = await api.addPost(postAuthor, postTitle, postContent, auth0Id, token);
 
       dispatch({
         type: ADD_POST,
@@ -46,10 +46,10 @@ export const getPost = (id) => {
   }
 }
 
-export const deletePost = (id) => {
+export const deletePost = (id, token) => {
   return async (dispatch) => {
     try {
-      api.deletePost(id)
+      api.deletePost(id, token)
 
       dispatch({
         type: DELETE_POST,

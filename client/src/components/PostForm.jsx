@@ -10,14 +10,17 @@ const PostForm = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { user } = useAuth0();
+  const { user, getAccessTokenSilently } = useAuth0();
 
   // add handleSubmit function here to call submitPost and reset form inputs
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault()
     
-    console.log(user.sub, user)
-    dispatch(addPost(user.nickname, postTitle, postContent, user.sub))
+    // console.log(user.sub, user)
+    const token = await getAccessTokenSilently()
+    console.log(token)
+
+    dispatch(addPost(user.nickname, postTitle, postContent, user.sub, token))
     setPostTitle('')
     setPostContent('')
     navigate('/')
