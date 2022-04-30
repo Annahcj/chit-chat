@@ -26,8 +26,7 @@ router.post('/', checkJwt, (req, res) => {
   const { postId, author, comment, auth0Id } = req.body;
   db.insertComment(postId, author, comment, auth0Id)
     .then((ids) => {
-      if (process.env.NODE_ENV === 'production') return db.getCommentById(ids[0].id); // postgresql: ids[0].id
-      else return db.getCommentById(ids[0]); // sqlite3: ids[0]
+      return db.getCommentById(ids[0].id);
     })
     .then(result => {
       res.json(result)

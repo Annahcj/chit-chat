@@ -41,6 +41,7 @@
   "devDependencies": {
     "@testing-library/dom": "^8.11.3",
     "@testing-library/jest-dom": "^5.16.2",
+    "better-sqlite3": "^7.5.1",
     "eslint": "^8.11.0",
     "eslint-config-eda": "^1.1.0",
     "eslint-plugin-import": "^2.25.4",

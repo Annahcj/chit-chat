@@ -9,8 +9,7 @@ router.post('/new', checkJwt, (req, res) => {
   const { author, title, content, auth0Id } = req.body;
   db.insertPost(author, title, content, auth0Id)
     .then((ids) => {
-      if (process.env.NODE_ENV === 'production') return db.getPostById(ids[0].id) // postgresql: ids[0].id
-      else return db.getPostById(ids[0]); // sqlite3: ids[0]
+      return db.getPostById(ids[0].id);
     })
     .then(post => {
       res.json(post)
