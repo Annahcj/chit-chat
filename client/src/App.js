@@ -24,7 +24,7 @@ function App() {
   }, [dispatch])
 
   useEffect(() => {
-    setDisplayPosts(posts)
+    setDisplayPosts([...posts].reverse())
   }, [posts])
 
   // Search function
@@ -35,7 +35,7 @@ function App() {
     setDisplayPosts(
       posts.filter((post) => {
         return hasMatch(post.title.toLowerCase(), e.target.value)
-      })
+      }).reverse()
     )
   }
 
