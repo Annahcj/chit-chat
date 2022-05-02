@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addSubcomment } from '../state/actions/subcomments' 
 
 const SubCommentForm = ({ commentId, showForm, setShowForm }) => {
   const [formComment, setFormComment] = useState('')
+  const dispatch = useDispatch()
 
   const handleSubmit = (evt) => {
     evt.preventDefault()

@@ -223,6 +223,10 @@ textarea {
   color:rgb(190, 190, 190);
 }
 
+.delete-icon {
+  margin-right: 35px;
+}
+
 .heading {
   position: relative;
   display: flex;

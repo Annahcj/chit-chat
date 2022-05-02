@@ -112,3 +112,16 @@ export const getSubcomments = () => {
     .then(res => res.json())
     .catch(err => console.log(err))
 }
+
+export const addSubcomment = (subcomment, token) => {
+  return fetch(`/api/subcomments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(subcomment)
+  })
+    .then(res => res.json())
+    .catch(err => console.log(err))
+}
