@@ -1,4 +1,4 @@
-import { SUBCOMMENTS_LOAD_START, GET_SUBCOMMENTS } from '../actionTYpes';
+import { SUBCOMMENTS_LOAD_START, GET_SUBCOMMENTS } from '../actionTypes';
 
 const initialState = {
   subcomments: [], // subcomments for a comment
