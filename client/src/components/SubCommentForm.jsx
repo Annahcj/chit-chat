@@ -19,6 +19,7 @@ const SubCommentForm = ({ commentId, showForm, setShowForm }) => {
       comment_id: commentId
     }
     dispatch(addSubcomment(subcomment, token))
+    setShowForm(false)
 
     setFormComment('')
   }

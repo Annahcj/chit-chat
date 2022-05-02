@@ -20,12 +20,6 @@ export const getSubcomments = () => {
 export const addSubcomment = (subcomment, token) => {
   return async (dispatch) => {
     try {
-    // table.integer('comment_id').references('comments.id').onDelete('CASCADE')
-    // table.string('author')
-    // table.text('comment')
-    // table.datetime('created_at')
-    // table.string('auth0Id')
-
       dispatch({ type: SUBCOMMENTS_LOAD_START })
 
       const newSubcomment = await api.addSubcomment(subcomment, token)
