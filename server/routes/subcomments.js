@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db.js');
 
+const checkJwt = require('../auth0');
+
 router.get('/', (req, res) => {
   db.getSubcomments()
     .then(subcomments => {
@@ -11,7 +13,7 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.post('/', (req, res) => {
+router.post('/', checkJwt, (req, res) => {
   const subcomment = req.body;
   db.addSubcomment(subcomment)
     .then(ids => {

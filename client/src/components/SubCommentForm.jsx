@@ -1,14 +1,25 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addSubcomment } from '../state/actions/subcomments' 
+import { useAuth0 } from '@auth0/auth0-react'
 
 const SubCommentForm = ({ commentId, showForm, setShowForm }) => {
   const [formComment, setFormComment] = useState('')
   const dispatch = useDispatch()
+  const { user, getAccessTokenSilently } = useAuth0()
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault()
     // dispatch to add a new subcomment
+    const token = await getAccessTokenSilently()
+    const subcomment = {
+      comment: formComment,
+      author: user.nickname,
+      auth0Id: user.sub,
+      comment_id: commentId
+    }
+    dispatch(addSubcomment(subcomment, token))
+
     setFormComment('')
   }
 

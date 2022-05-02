@@ -8,15 +8,16 @@ const SubComments = ({ allSubcomments, loading, commentId }) => {
   // add server-side routes for subcomments
   // add db functions for subcomments
   const [subcomments, setSubcomments] = useState([])
+
   useEffect(() => {
-    setSubcomments(allSubcomments.filter(subcomment => subcomment.id === commentId))
-  }, [allSubcomments])
+    setSubcomments(allSubcomments.filter(subcomment => subcomment.comment_id === commentId))
+  }, [allSubcomments, commentId])
 
   if (loading) return <CircularProgress />
   return (
     <div className="subcomments">
-      {subcomments.map((subcomment) => (
-        <div className="subcomment">
+      {subcomments.map((subcomment, idx) => (
+        <div className="subcomment" key={`subcomment-${idx}`}>
           <span className="bold">{subcomment.author}</span>
           <span className="comment-content">{subcomment.comment}</span>
           <div className="commentTime">

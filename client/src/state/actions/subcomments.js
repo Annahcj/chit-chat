@@ -17,7 +17,7 @@ export const getSubcomments = () => {
   }
 }
 
-export const addSubcomment = (commentId, auth0Id, data, token) => {
+export const addSubcomment = (subcomment, token) => {
   return async (dispatch) => {
     try {
     // table.integer('comment_id').references('comments.id').onDelete('CASCADE')
@@ -25,11 +25,6 @@ export const addSubcomment = (commentId, auth0Id, data, token) => {
     // table.text('comment')
     // table.datetime('created_at')
     // table.string('auth0Id')
-      const subcomment = {
-        ...data,
-        comment_id: commentId,
-        auth0Id
-      }
 
       dispatch({ type: SUBCOMMENTS_LOAD_START })
 
