@@ -11,4 +11,16 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
+router.post('/', (req, res) => {
+  const subcomment = req.body;
+  db.addSubcomment(subcomment)
+    .then(ids => {
+      return db.getSubcommentById(ids[0].id)
+    })
+    .then(newSubcomment => {
+      res.json(newSubcomment)
+    })
+    .catch(err => console.log(err))
+})
+
 module.exports = router;
