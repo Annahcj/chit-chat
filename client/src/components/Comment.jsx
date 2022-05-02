@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
+import ReplyIcon from '@mui/icons-material/Reply'
+import SubCommentForm from './SubCommentForm'
 import moment from 'moment'
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -12,7 +14,14 @@ const Comment = ({
   handleDeleteComment,
 }) => {
   const [isVisible, setIsVisible] = useState(false)
+  const [showForm, setShowForm] = useState(false)
+
   const { isAuthenticated, user } = useAuth0()
+
+  const handleReply = () => {
+    // show the subcomment form
+    setShowForm(true)
+  }
 
   return (
     <div
@@ -23,6 +32,12 @@ const Comment = ({
       <span className="bold">{author}</span>
       <span className="comment-content">{comment}</span>
       <div className="commentTime">
+        {isAuthenticated && (
+          <ReplyIcon
+            className={`${isVisible ? '' : 'isNotVisible'} icon reply-icon`}
+            onClick={() => handleReply()}
+          />
+        )}
         {isAuthenticated && user.sub === auth0Id && (
           <DeleteIcon
             className={`${isVisible ? '' : 'isNotVisible'} icon delete-icon`}
@@ -31,6 +46,11 @@ const Comment = ({
         )}
         {moment(created_at).fromNow()}
       </div>
+      <SubCommentForm
+        commentId={commentId}
+        showForm={showForm}
+        setShowForm={setShowForm}
+      />
     </div>
   )
 }

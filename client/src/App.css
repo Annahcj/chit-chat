@@ -257,6 +257,19 @@ textarea {
   color: rgb(93, 93, 93);
 }
 
+/* Cancel button */
+.cancel-button {
+  background-color: rgb(221, 107, 107);
+}
+.cancel-button:hover {
+  background-color: rgb(218, 86, 86);
+}
+
+/* Subcomment Form */
+.subcomment-form {
+  margin-top: 10px;
+}
+
 
 @media screen and (min-width: 900px) {
   .post-display {
