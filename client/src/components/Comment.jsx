@@ -29,10 +29,6 @@ const Comment = ({
     setShowForm(true)
   }
 
-  useEffect(() => {
-    dispatch(getSubcomments())
-  }, [])
-
   return (
     <div
       className="comment"

@@ -10,6 +10,7 @@ import { hasMatch } from './functions.js'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPosts } from './state/actions/posts'
 import { getComments } from './state/actions/comments'
+import { getSubcomments} from './state/actions/subcomments'
 
 function App() {
   const { comments } = useSelector((state) => state.comments)
@@ -21,6 +22,7 @@ function App() {
     // fetch posts and comments on first render
     dispatch(getPosts())
     dispatch(getComments())
+    dispatch(getSubcomments())
   }, [dispatch])
 
   useEffect(() => {
