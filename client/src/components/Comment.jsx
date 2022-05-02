@@ -24,11 +24,6 @@ const Comment = ({
     setShowForm(true)
   }
 
-  const subcomments = [
-    { author: 'Anna', comment: 'Hello', created_at: new Date(Date.now()) },
-    { author: 'Anna', comment: 'ByeBye', created_at: new Date(Date.now()) },
-  ]
-
   return (
     <div
       className="comment"
@@ -57,7 +52,7 @@ const Comment = ({
         showForm={showForm}
         setShowForm={setShowForm}
       />
-      <SubComments subcomments={subcomments} commentId={commentId}/>
+      <SubComments commentId={commentId}/>
     </div>
   )
 }
