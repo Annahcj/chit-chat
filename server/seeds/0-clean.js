@@ -1,6 +1,7 @@
 exports.seed = (knex) => {
-  return knex('comments')
+  return knex('subcomments')
     .del()
+    .then(() => knex('comments').del())
     .then(() => knex('posts').del())
 
   // Delete data from child table(s) first, and use .then() to delete from parent tables
