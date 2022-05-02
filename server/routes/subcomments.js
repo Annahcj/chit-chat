@@ -12,4 +12,4 @@ router.get('/commentId', (req, res) => {
     .catch(err => console.log(err))
 })
 
-export default router;
+module.exports = router;
