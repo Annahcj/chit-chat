@@ -1,4 +1,3 @@
-// next task: take in the auth token to set as a header
 
 export const getPosts = () => {
   return fetch('/api/posts', {
@@ -102,4 +101,14 @@ export const deletePost = (postId, token) => {
       return res.json()
     })
     .catch((err) => console.log(err))
+}
+
+
+// subcomments
+export const getSubcomments = (commentId) => {
+  return fetch(`/api/subcomments/${commentId}`, {
+    method: 'GET'
+  })
+    .then(res => res.json())
+    .catch(err => console.log(err))
 }

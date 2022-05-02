@@ -13,7 +13,8 @@ module.exports = {
   getCommentsByPostId,
   getPostAndCommentsByPostId,
   deleteComment,
-  deletePost
+  deletePost,
+  getSubcomments
 }
 
 function getPosts(db = connection) {
@@ -91,4 +92,11 @@ function deletePost(postId, db = connection) {
   return db('posts')  
     .del()
     .where('id', postId)
+}
+
+// subcomments
+function getSubcomments(commentId, db = connection) {
+  return db('subcomments')
+    .select()
+    .where('id', commentId)
 }
