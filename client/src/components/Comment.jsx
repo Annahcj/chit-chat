@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import ReplyIcon from '@mui/icons-material/Reply'
 import SubCommentForm from './SubCommentForm'
 import moment from 'moment'
 import { useAuth0 } from '@auth0/auth0-react'
 import SubComments from './SubComments'
-import { useSelector, useDispatch } from 'react-redux'
-import { getSubcomments } from '../state/actions/subcomments'
+import { useSelector } from 'react-redux'
 
 const Comment = ({
   commentId,
@@ -16,7 +15,6 @@ const Comment = ({
   auth0Id,
   handleDeleteComment,
 }) => {
-  const dispatch = useDispatch()
   const [isVisible, setIsVisible] = useState(false)
   const [showForm, setShowForm] = useState(false)
 
