@@ -4,6 +4,7 @@ import ReplyIcon from '@mui/icons-material/Reply'
 import SubCommentForm from './SubCommentForm'
 import moment from 'moment'
 import { useAuth0 } from '@auth0/auth0-react'
+import SubComments from './SubComments'
 
 const Comment = ({
   commentId,
@@ -22,6 +23,11 @@ const Comment = ({
     // show the subcomment form
     setShowForm(true)
   }
+
+  const subcomments = [
+    { author: 'Anna', comment: 'Hello', created_at: new Date(Date.now()) },
+    { author: 'Anna', comment: 'ByeBye', created_at: new Date(Date.now()) },
+  ]
 
   return (
     <div
@@ -51,6 +57,7 @@ const Comment = ({
         showForm={showForm}
         setShowForm={setShowForm}
       />
+      <SubComments subcomments={subcomments}/>
     </div>
   )
 }
