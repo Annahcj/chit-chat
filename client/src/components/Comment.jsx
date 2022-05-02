@@ -57,7 +57,7 @@ const Comment = ({
         showForm={showForm}
         setShowForm={setShowForm}
       />
-      <SubComments subcomments={subcomments}/>
+      <SubComments subcomments={subcomments} commentId={commentId}/>
     </div>
   )
 }

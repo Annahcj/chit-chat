@@ -5,6 +5,7 @@ const SubCommentForm = ({ commentId, showForm, setShowForm }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
+    // dispatch to add a new subcomment
     setFormComment('')
   }
 
