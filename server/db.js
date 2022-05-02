@@ -16,7 +16,8 @@ module.exports = {
   deletePost,
   getSubcomments,
   addSubcomment,
-  getSubcommentById
+  getSubcommentById,
+  deleteSubcomment
 }
 
 function getPosts(db = connection) {
@@ -113,4 +114,10 @@ function getSubcommentById(id, db = connection) {
     .select()
     .where('id', id)
     .first()
+}
+
+function deleteSubcomment(id, db = connection) {
+  return db('subcomments')
+    .del()
+    .where('id', id)
 }

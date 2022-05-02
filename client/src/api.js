@@ -125,3 +125,14 @@ export const addSubcomment = (subcomment, token) => {
     .then(res => res.json())
     .catch(err => console.log(err))
 }
+
+export const deleteSubcomment = (id, token) => {
+  return fetch(`/api/subcomments/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then(res => res.json())
+    .catch(err => console.log(err))
+}

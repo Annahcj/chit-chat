@@ -25,4 +25,11 @@ router.post('/', checkJwt, (req, res) => {
     .catch(err => console.log(err))
 })
 
+router.delete('/:id', checkJwt, (req, res) => {
+  const id = +req.params.id;
+  db.deleteSubcomment(id)
+    .then(() => res.json({}))
+    .catch(err => console.log(err))
+})
+
 module.exports = router;
