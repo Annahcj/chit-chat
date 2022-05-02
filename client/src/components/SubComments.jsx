@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
-import { CircularProgress } from '@mui/material'
 
-const SubComments = ({ allSubcomments, loading, commentId }) => {
+const SubComments = ({ allSubcomments, commentId }) => {
   const [subcomments, setSubcomments] = useState([])
 
   useEffect(() => {
     setSubcomments(allSubcomments.filter(subcomment => subcomment.comment_id === commentId))
   }, [allSubcomments, commentId])
 
-  if (loading) return <CircularProgress />
   return (
     <div className="subcomments">
       {subcomments.map((subcomment, idx) => (

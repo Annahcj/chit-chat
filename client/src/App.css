@@ -280,8 +280,11 @@ textarea {
 }
 
 .subcomment {
-  padding: 15px;
-  /* border-bottom: 1px solid rgb(241, 241, 241); */
+  padding: 13px;
+}
+
+.subcomment:not(:last-child) {
+  border-bottom: 1px solid rgb(241, 241, 241);
 }
 
 
