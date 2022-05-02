@@ -95,8 +95,7 @@ function deletePost(postId, db = connection) {
 }
 
 // subcomments
-function getSubcomments(commentId, db = connection) {
+function getSubcomments(db = connection) {
   return db('subcomments')
     .select()
-    .where('id', commentId)
 }

@@ -3,9 +3,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db.js');
 
-router.get('/commentId', (req, res) => {
-  const commentId = +req.params.commentId;
-  db.getSubcomments(commentId)
+router.get('/', (req, res) => {
+  db.getSubcomments()
     .then(subcomments => {
       res.json(subcomments)
     })

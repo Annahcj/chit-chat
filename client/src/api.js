@@ -105,8 +105,8 @@ export const deletePost = (postId, token) => {
 
 
 // subcomments
-export const getSubcomments = (commentId) => {
-  return fetch(`/api/subcomments/${commentId}`, {
+export const getSubcomments = () => {
+  return fetch(`/api/subcomments`, {
     method: 'GET'
   })
     .then(res => res.json())
