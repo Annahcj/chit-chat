@@ -11,6 +11,8 @@ const SubComments = ({ allSubcomments, commentId }) => {
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth0()
   const dispatch = useDispatch()
 
+  const [showSubcomments, setShowSubcomments] = useState(false)
+
   const handleDelete = async (id) => {
     // dispatch delete subcomment action
     const token = await getAccessTokenSilently()
@@ -24,30 +26,54 @@ const SubComments = ({ allSubcomments, commentId }) => {
   }, [allSubcomments, commentId])
 
   return (
-    <div className="subcomments">
-      {subcomments.map((subcomment, idx) => (
-        <div
-          className="subcomment"
-          key={`subcomment-${idx}`}
-          onMouseEnter={() => setIsVisible(true)}
-          onMouseLeave={() => setIsVisible(false)}
-        >
-          <span className="bold">{subcomment.author}</span>
-          <span className="comment-content">{subcomment.comment}</span>
-          <div className="commentTime">
-            {isAuthenticated && user.sub === subcomment.auth0Id && (
-              <DeleteIcon
-                className={`${
-                  isVisible ? '' : 'isNotVisible'
-                } icon delete-icon`}
-                onClick={() => handleDelete(subcomment.id)}
-              />
-            )}
-            {moment(subcomment.created_at).fromNow()}
-          </div>
+    <>
+      <div className="show-reply-div">
+        {subcomments.length > 0 &&
+          (showSubcomments ? (
+            <button
+              onClick={() => setShowSubcomments(!showSubcomments)}
+              className="show-hide-btn"
+            >
+              Hide {subcomments.length}{' '}
+              {subcomments.length === 1 ? 'Reply' : 'Replies'}
+            </button>
+          ) : (
+            <button
+              onClick={() => setShowSubcomments(!showSubcomments)}
+              className="show-hide-btn"
+            >
+              Show {subcomments.length}{' '}
+              {subcomments.length === 1 ? 'Reply' : 'Replies'}
+            </button>
+          ))}
+      </div>
+      {showSubcomments && (
+        <div className="subcomments">
+          {subcomments.map((subcomment, idx) => (
+            <div
+              className="subcomment"
+              key={`subcomment-${idx}`}
+              onMouseEnter={() => setIsVisible(true)}
+              onMouseLeave={() => setIsVisible(false)}
+            >
+              <span className="bold">{subcomment.author}</span>
+              <span className="comment-content">{subcomment.comment}</span>
+              <div className="commentTime">
+                {isAuthenticated && user.sub === subcomment.auth0Id && (
+                  <DeleteIcon
+                    className={`${
+                      isVisible ? '' : 'isNotVisible'
+                    } icon delete-icon`}
+                    onClick={() => handleDelete(subcomment.id)}
+                  />
+                )}
+                {moment(subcomment.created_at).fromNow()}
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      )}
+    </>
   )
 }
 

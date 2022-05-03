@@ -287,6 +287,17 @@ textarea {
   border-bottom: 1px solid rgb(241, 241, 241);
 }
 
+.show-hide-btn {
+  background-color: transparent;
+  border: none;
+  color: grey;
+  cursor: pointer;
+}
+
+.show-reply-div {
+  margin-top: 10px;
+}
+
 
 @media screen and (min-width: 900px) {
   .post-display {
