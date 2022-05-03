@@ -292,6 +292,7 @@ textarea {
   border: none;
   color: grey;
   cursor: pointer;
+  font-size: 0.7rem;
 }
 
 .show-reply-div {

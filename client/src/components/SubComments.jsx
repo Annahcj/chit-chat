@@ -7,7 +7,7 @@ import { deleteSubcomment } from '../state/actions/subcomments'
 
 const SubComments = ({ allSubcomments, commentId }) => {
   const [subcomments, setSubcomments] = useState([])
-  const [isVisible, setIsVisible] = useState(false)
+  const [visible, setVisible] = useState(-1) // index of subcomment that is hovered over
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth0()
   const dispatch = useDispatch()
 
@@ -53,8 +53,8 @@ const SubComments = ({ allSubcomments, commentId }) => {
             <div
               className="subcomment"
               key={`subcomment-${idx}`}
-              onMouseEnter={() => setIsVisible(true)}
-              onMouseLeave={() => setIsVisible(false)}
+              onMouseEnter={() => setVisible(idx)}
+              onMouseLeave={() => setVisible(-1)}
             >
               <span className="bold">{subcomment.author}</span>
               <span className="comment-content">{subcomment.comment}</span>
@@ -62,7 +62,7 @@ const SubComments = ({ allSubcomments, commentId }) => {
                 {isAuthenticated && user.sub === subcomment.auth0Id && (
                   <DeleteIcon
                     className={`${
-                      isVisible ? '' : 'isNotVisible'
+                      visible === idx ? '' : 'isNotVisible'
                     } icon delete-icon`}
                     onClick={() => handleDelete(subcomment.id)}
                   />
